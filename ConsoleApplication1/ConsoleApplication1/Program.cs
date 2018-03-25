@@ -1,62 +1,30 @@
 ﻿namespace ConsoleApplication1
 {
-    // Suppose we want to call derived class functions using a parent class refernce variable meaning polymorphism we need to do below.
+    // Business Rule
+    /*
+     * Id should not be negative
+     * Name should not be empty or null
+     * Passing Marks cannot be changed
+     */
+    class Test
+    {
+        public int Passmarks;
+        public string Name;
+        public int Id;
+    }
     class Program
     {
         static void Main(string[] args)
         {
-            Employee e1 = new FullTimeEmployee();
-            e1.DisplayName(); // this is calling hidden method in base class - Method Hiding
-            e1.PrintName();// this is calling method in deroved class - Method Overriding
-        }
-    }
-
-    class Employee
-    {
-        public string firstName = "FN";
-        public string lastName = "LN";
-        public void DisplayName()
-        {
-            System.Console.WriteLine(firstName + lastName);
-        }
-        public virtual void PrintName()
-        {
-            System.Console.WriteLine(firstName + lastName);
-        }
-    }
-
-    class FullTimeEmployee : Employee
-    {
-        public void DisplayName()
-        {
-            System.Console.WriteLine(firstName + lastName + " - FullTime");
-        }
-        public override void PrintName()
-        {
-            System.Console.WriteLine(firstName + lastName + " - FullTime");
-        }
-    }
-
-    class PartTimeEmployee : Employee
-    {
-        public void DisplayName()
-        {
-            System.Console.WriteLine(firstName + lastName + " - PartTime");
-        }
-
-    }
-
-    class TemporaryEmployee : Employee
-    {
-        public void DisplayName()
-        {
-            System.Console.WriteLine(firstName + lastName + " - Temporary");
+            Test t1 = new Test();
+            t1.Id = -1;
+            t1.Name = null;
+            t1.Passmarks = 0;
         }
     }
 }
 
-
-// Function Overloading: Method Overloading allows a class to have multiple method with the same name but different signature.
-// type of parameter, kind of parameter, number of parameter
-// params in parameter does not allow overloading
-// also changimg method signature does allow overloading.
+/*
+ * So we cannot control what gets into those properties. So we need Encapsulation.
+ 
+     */
