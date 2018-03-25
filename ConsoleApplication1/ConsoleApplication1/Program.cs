@@ -1,65 +1,54 @@
 ﻿namespace ConsoleApplication1
 {
-
-
     // Simple Class Example
     class Program
     {
         static void Main(string[] args)
         {
-            Circle c1 = new Circle(2);
-            System.Console.WriteLine("Area = {0}", c1.Area());
-            Circle c2 = new Circle(4);
-            System.Console.WriteLine("Area = {0}", c2.Area());
+            FullTimeEmployee FE = new FullTimeEmployee();
+            FE.firstName = "Hello";
+            FE.yearlySalary = 34000;
+            PartTimeEmployee PE = new PartTimeEmployee() { firstName = "Tanuj", hourlyRate = 23 };
         }
     }
-    //Problem with below code is Pi is static and if we dont declare it static every instasnce of class will create a memory space for it. 
-    // so lets make it static.
-    //class Circle
-    //{
-    //    float _PI = 3.14F;
-    //    int _radius;
-    //    public Circle(int Radious)
-    //    {
-    //        _radius = Radious;
-    //    }
-    //    public float Area()
-    //    {
-    //        return _PI * _radius * _radius;
-    //    }
-    //}
-    // now declared static
-    //class Circle
-    //{
-    //    static float _PI = 3.14F;
-    //    int _radius;
-    //    public Circle(int Radious)
-    //    {
-    //        _radius = Radious;
-    //    }
-    //    public float Area()
-    //    {
-    //        return _PI * _radius * _radius;
-    //    }
-    //}
 
-    // now lets assign value to static parameter via static constructor
-    class Circle
+    class Employee
     {
-        static float _PI;
-        int _radius;
-        static Circle()
+        public string firstName;
+        public Employee()
         {
-            _PI = 3.14F;
+            System.Console.WriteLine("This is base class constructor");
         }
-        public Circle(int Radious)
+    }
+
+    class FullTimeEmployee : Employee
+    {
+        public int yearlySalary;
+        public FullTimeEmployee()
         {
-            _radius = Radious;
+            System.Console.WriteLine("This is full time derived class constructor");
         }
-        public float Area()
+    }
+
+    class PartTimeEmployee : Employee
+    {
+        public int hourlyRate;
+        public PartTimeEmployee()
         {
-            return _PI * _radius * _radius;
+            System.Console.WriteLine("This is partime derived constructor");
         }
     }
 }
 
+/*
+ * OUTPUT
+ * This is base class constructor
+This is full time derived class constructor
+This is base class constructor
+This is partime derived constructor
+Always base class constructor gets called first before the child class.
+Base class is automaticall yinstantiated when child class object is created.    
+C# only supports single class inheritance
+
+     class PartTimeEmployee : Employee, ABC this is not supported.
+ */
