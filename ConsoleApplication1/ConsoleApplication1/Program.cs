@@ -6,9 +6,9 @@
     {
         static void Main(string[] args)
         {
-            Child c1 = new Child();
-            /// now this is calling the display method of child. Hence the \parent display method is hidden.
-            ((Employee)c1).Display();
+            Employee c1 = new Child(); // parent is potining to address of Child
+            //Child c2 = new Employee(); // THIS WILL NOT WORK!!
+            c1.Display();
         }
     }
     class Employee
@@ -18,7 +18,6 @@
             System.Console.WriteLine("I am parent");
         }
     }
-
     class Child : Employee
     {
         public new void Display() //After adding NEW keyword green squiggly goes off
@@ -28,11 +27,9 @@
     }
 }
 
-/* 
-I am parent
-Press any key to continue . . .
+//I am parent
+//Press any key to continue . . .
 
 
 
- */
 
