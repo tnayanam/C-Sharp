@@ -23,8 +23,18 @@
     {
         public new void Display() //After adding NEW keyword green squiggly goes off
         {
+            base.Display();
             System.Console.WriteLine("I am child");
         }
     }
 }
+
+/* BOTH CONSTRUCTOR CALLED
+ * I am parent
+I am child
+Press any key to continue . . .
+
+
+
+ */
 
