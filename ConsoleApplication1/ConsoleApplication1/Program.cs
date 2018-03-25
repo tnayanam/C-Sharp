@@ -56,3 +56,7 @@
 }
 
 
+// Function Overloading: Method Overloading allows a class to have multiple method with the same name but different signature.
+// type of parameter, kind of parameter, number of parameter
+// params in parameter does not allow overloading
+// also changimg method signature does allow overloading.
