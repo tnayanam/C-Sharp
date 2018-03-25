@@ -8,7 +8,7 @@
         {
             Child c1 = new Child();
             /// now this is calling the display method of child. Hence the \parent display method is hidden.
-            c1.Display();
+            ((Employee)c1).Display();
         }
     }
     class Employee
@@ -23,15 +23,13 @@
     {
         public new void Display() //After adding NEW keyword green squiggly goes off
         {
-            base.Display();
             System.Console.WriteLine("I am child");
         }
     }
 }
 
-/* BOTH CONSTRUCTOR CALLED
- * I am parent
-I am child
+/* 
+I am parent
 Press any key to continue . . .
 
 
