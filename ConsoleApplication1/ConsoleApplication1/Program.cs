@@ -14,6 +14,19 @@ namespace ConsoleApplication1
         private int _Passmarks = 345;
         private string _Name;
         private int _Id;
+        // Now suppose there are certain scenarios where you  dont want any  validation on the field so for that  we have auto incremented
+        //  properties
+        // Example w/o autoincremented
+        private string _city;
+        public string City
+        {
+            get { return _city; }
+            set { _city = value; }
+        }
+
+        // Example with autoincremented
+        public string State { get; set; }
+
         public int PassMarks
         {
             get
@@ -55,6 +68,8 @@ namespace ConsoleApplication1
             Console.WriteLine(t1.PassMarks);
             Console.WriteLine(t1.Name);
             Console.WriteLine(t1.Id); // now we are treating the setter getter as if they are variables. so that is the benefit of using PROPERTIES
+            t1.State = "California";
+            t1.City = "Delhi";
         }
     }
 }
