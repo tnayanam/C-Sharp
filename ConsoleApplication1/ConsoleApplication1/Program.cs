@@ -19,12 +19,16 @@
         {
             System.Console.WriteLine("This is base class constructor");
         }
+        public Employee(string message)
+        {
+            System.Console.WriteLine(message);
+        }
     }
 
     class FullTimeEmployee : Employee
     {
         public int yearlySalary;
-        public FullTimeEmployee()
+        public FullTimeEmployee() : base("Passing value from derioved class")
         {
             System.Console.WriteLine("This is full time derived class constructor");
         }
