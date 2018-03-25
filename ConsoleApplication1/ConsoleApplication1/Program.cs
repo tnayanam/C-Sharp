@@ -79,3 +79,12 @@ namespace ConsoleApplication1
  * We use get and  set  methods  to implement properties
  
      */
+/*
+ * Difference between class and structure
+ * A struct is a value type where as a class is reference type
+ * Structs are stored in stack where as class is stored in heaps
+ * Values types hold their value in memory where the are declatred. where as reference types hold a refernce to an object in memory
+ * valuse types are destroyed immediately aftetr the scope is lost where as reference types only the references is destroyes after the scvope is lost. the object is later destroyed by the garbage collector
+ * when you copy a struct into another struct a new coppy of struct gets declared but when you copy class into another class we only get a reference variable. both the reference still point to same object in heaP.
+ * TH EOPERAION ON ONE VARIABLEW AFFECTS THE OTHER.
+ */
