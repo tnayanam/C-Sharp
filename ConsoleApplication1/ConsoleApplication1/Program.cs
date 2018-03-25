@@ -1,58 +1,31 @@
 ﻿namespace ConsoleApplication1
 {
+    // Hiding  Example One
     // Simple Class Example
     class Program
     {
         static void Main(string[] args)
         {
-            FullTimeEmployee FE = new FullTimeEmployee();
-            FE.firstName = "Hello";
-            FE.yearlySalary = 34000;
-            PartTimeEmployee PE = new PartTimeEmployee() { firstName = "Tanuj", hourlyRate = 23 };
+            Child c1 = new Child();
+            /// now this is calling the display method of child. Hence the \parent display method is hidden.
+            c1.Display();
         }
     }
-
     class Employee
     {
-        public string firstName;
-        public Employee()
+        public void Display()
         {
-            System.Console.WriteLine("This is base class constructor");
-        }
-        public Employee(string message)
-        {
-            System.Console.WriteLine(message);
+            System.Console.WriteLine("I am parent");
         }
     }
 
-    class FullTimeEmployee : Employee
+    class Child : Employee
     {
-        public int yearlySalary;
-        public FullTimeEmployee() : base("Passing value from derioved class")
+        public void Display() // we will see a green
+                              //squiggly here which tells use that because of this method parent method is getting HIDDEN.
         {
-            System.Console.WriteLine("This is full time derived class constructor");
-        }
-    }
-
-    class PartTimeEmployee : Employee
-    {
-        public int hourlyRate;
-        public PartTimeEmployee()
-        {
-            System.Console.WriteLine("This is partime derived constructor");
+            System.Console.WriteLine("I am child");
         }
     }
 }
 
-/*
- * OUTPUT
- * This is base class constructor
-This is full time derived class constructor
-This is base class constructor
-This is partime derived constructor
-Always base class constructor gets called first before the child class.
-Base class is automaticall yinstantiated when child class object is created.    
-C# only supports single class inheritance
-
-     class PartTimeEmployee : Employee, ABC this is not supported.
- */
