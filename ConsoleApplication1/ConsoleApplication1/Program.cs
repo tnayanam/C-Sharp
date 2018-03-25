@@ -1,38 +1,64 @@
 ﻿namespace ConsoleApplication1
 {
+
+
     // Simple Class Example
     class Program
     {
         static void Main(string[] args)
         {
-            //Customer c1 = new Customer(); // this will throw error because compiler does not provide default contructor if
-            // you alreadfy have created an constructor.(
-            // so now if we want a default constructor we need to provide explicitly.  (**)
-            Customer c1 = new Customer(); // now this will not throw error. (##) line will be called
-            Customer c2 = new Customer("Tanuj", "Nayanam");
-            c1.Display();
+            Circle c1 = new Circle(2);
+            System.Console.WriteLine("Area = {0}", c1.Area());
+            Circle c2 = new Circle(4);
+            System.Console.WriteLine("Area = {0}", c2.Area());
         }
     }
+    //Problem with below code is Pi is static and if we dont declare it static every instasnce of class will create a memory space for it. 
+    // so lets make it static.
+    //class Circle
+    //{
+    //    float _PI = 3.14F;
+    //    int _radius;
+    //    public Circle(int Radious)
+    //    {
+    //        _radius = Radious;
+    //    }
+    //    public float Area()
+    //    {
+    //        return _PI * _radius * _radius;
+    //    }
+    //}
+    // now declared static
+    //class Circle
+    //{
+    //    static float _PI = 3.14F;
+    //    int _radius;
+    //    public Circle(int Radious)
+    //    {
+    //        _radius = Radious;
+    //    }
+    //    public float Area()
+    //    {
+    //        return _PI * _radius * _radius;
+    //    }
+    //}
 
-    class Customer
+    // now lets assign value to static parameter via static constructor
+    class Circle
     {
-        private string _lastName; // keep underscore for private varibles name
-        private string _firstName;
-        // (**)
-        public Customer() : this("No firstname provided", "No lastName Provided") //here we are calling parameterizd constructor (##)
+        static float _PI;
+        int _radius;
+        static Circle()
         {
-
+            _PI = 3.14F;
         }
-
-        public Customer(string FirstName, string LastName)
+        public Circle(int Radious)
         {
-            _firstName = FirstName;
-            _lastName = LastName;
+            _radius = Radious;
         }
-
-        public void Display()
+        public float Area()
         {
-            System.Console.WriteLine("FirstName is {0} and LastName is {1}", _firstName, _lastName);
+            return _PI * _radius * _radius;
         }
     }
 }
