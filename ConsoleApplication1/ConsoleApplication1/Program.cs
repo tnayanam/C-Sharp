@@ -1,34 +1,82 @@
 ﻿namespace ConsoleApplication1
 {
-    // Hiding  Example One
-    // Simple Class Example
     class Program
     {
         static void Main(string[] args)
         {
-            Employee c1 = new Child(); // parent is potining to address of Child
-            //Child c2 = new Employee(); // THIS WILL NOT WORK!!
-            c1.Display();
+            Employee[] emps = new Employee[4];
+            emps[0] = new Employee();
+            emps[1] = new FullTimeEmployee();
+            emps[2] = new PartTimeEmployee();
+            emps[3] = new TemporaryEmployee();
+
+            foreach (var e in emps)
+            {
+                e.DisplayName();
+            }
         }
     }
+
     class Employee
     {
-        public void Display()
+        public string firstName = "FN";
+        public string lastName = "LN";
+        public void DisplayName()
         {
-            System.Console.WriteLine("I am parent");
+            System.Console.WriteLine(firstName + lastName);
+            System.Console.WriteLine();
         }
     }
-    class Child : Employee
+
+    class FullTimeEmployee : Employee
     {
-        public new void Display() //After adding NEW keyword green squiggly goes off
+        public void DisplayName()
         {
-            System.Console.WriteLine("I am child");
+            System.Console.WriteLine(firstName + lastName + " - FullTime");
+            System.Console.WriteLine();
+        }
+    }
+
+
+    class PartTimeEmployee : Employee
+    {
+        public void DisplayName()
+        {
+            System.Console.WriteLine(firstName + lastName + " - PartTime");
+            System.Console.WriteLine();
+        }
+    }
+
+    class TemporaryEmployee : Employee
+    {
+        public void DisplayName()
+        {
+            System.Console.WriteLine(firstName + lastName + " - Temporary");
+            System.Console.WriteLine();
         }
     }
 }
 
-//I am parent
-//Press any key to continue . . .
+/*
+ * Polymorphism allows us to invoke derivd class methods with parent class reference variable
+ * 
+ * Output
+ * FNLN
+
+FNLN
+
+FNLN
+
+FNLN
+
+Ideally we should have expected differnet output as methods of child should have been called, even we are getting green squiggly that
+parent method is hidden still only the parent method is getting called.
+
+
+
+ */
+
+
 
 
 
