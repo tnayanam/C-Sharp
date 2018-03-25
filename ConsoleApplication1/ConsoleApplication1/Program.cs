@@ -21,8 +21,7 @@
 
     class Child : Employee
     {
-        public void Display() // we will see a green
-                              //squiggly here which tells use that because of this method parent method is getting HIDDEN.
+        public new void Display() //After adding NEW keyword green squiggly goes off
         {
             System.Console.WriteLine("I am child");
         }
