@@ -2,6 +2,7 @@
 
 namespace ConsoleApplication1
 {
+    // Now a better approach, using properties
     // Business Rule
     /*
      * Id should not be negative
@@ -10,55 +11,56 @@ namespace ConsoleApplication1
      */
     class Test
     {
-        private int _Passmarks;
+        private int _Passmarks = 345;
         private string _Name;
         private int _Id;
+        public int PassMarks
+        {
+            get
+            {
+                return _Passmarks;
 
-        public void SetID(int Id)
-        {
-            if (Id < 0)
-                throw new Exception("Id cannot be negative");
-            _Id = Id;
-        }
-        public int GetID()
-        {
-            return _Id;
+            }
         }
 
-        public void SetName(string Name)
+        public string Name
         {
-            if (string.IsNullOrEmpty(Name))
-                throw new Exception("No Name Given");
-            _Name = Name;
+            get { return string.IsNullOrEmpty(_Name) ? "No Name" : _Name; }
+            set
+            {
+                if (string.IsNullOrEmpty(value))
+                    throw new Exception("No Name Given");
+                _Name = value;
+            }
         }
 
-        public string GetName()
+        public int Id
         {
-            return string.IsNullOrEmpty(_Name) ? "No Name" : _Name;
+            get { return _Id; }
+            set
+            {
+                if (value < 0)
+                    throw new Exception("Id cannot be negative");
+                _Id = value;
+            }
         }
-
-        public int GetMarks()
-        {
-            return _Passmarks;
-        }
-
-
     }
     class Program
     {
         static void Main(string[] args)
         {
             Test t1 = new Test();
-            //t1.passingMarks - passing marks cannot be set now.
-            //t1.SetID(-2); // this will throw exception
-            Console.WriteLine(t1.GetName()); // No Name output
-            t1.SetName(null); // Exception
-
+            t1.Id = 3;
+            t1.Name = "Hello";
+            Console.WriteLine(t1.PassMarks);
+            Console.WriteLine(t1.Name);
+            Console.WriteLine(t1.Id); // now we are treating the setter getter as if they are variables. so that is the benefit of using PROPERTIES
         }
     }
 }
 
 /*
  * So we cannot control what gets into those properties. So we need Encapsulation.
+ * We use get and  set  methods  to implement properties
  
      */
