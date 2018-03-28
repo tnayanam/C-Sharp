@@ -1,37 +1,31 @@
 ﻿namespace ConsoleApplication1
 {
-    interface ICustomer
+    abstract class Customer
     {
-        void Print(); // you cannot give implementation in interface // you cannot give access modifier. they are alwasy public
-    }
-
-    public class Test : ICustomer
-    {
-        public void Print()
+        public abstract int Print(); // it cannot have the implementaton
+        public void Tan()
         {
-            System.Console.WriteLine("Hello");
+
         }
     }
-    class Program : ICustomer
+
+    // an abstract class is incomplete so cannot be instantiated.
+    // an abstract class cannot be selaed because an abstract class is meant to over public
+    // AN ABSTRACT CLASS MAy or may not contain abstract members
+    // a non abstract class deriving from abstract class must implement al the methods of abstract class.
+    class Program : Customer
     {
         static void Main(string[] args)
         {
-            Test t1 = new Test();
-            t1.Print();
-            ICustomer cust = new Test();
-            ICustomer cust = new ICustomer(); // NOT POSSIBLE (**)
-            cust.Print();
+            Program p1 = new Program();
+
+             
         }
-        public void Print()
+
+        public override int Print()
         {
-        }// class imnplemeting the interface has to implement all the methods of it 
+            System.Console.WriteLine("I am in non abstract class");
+            return 0;
+        }
     }
 }
-/*
- * Interfaces contains only declaration no implementations
- * interface members are public by default
- * interfaces cannot contain fields
- * if a class inherits from an interface it must provide implementation for all interface members
- * a class can inherit from more than one interface but a class cannot inherit from more than one class
- * We cannot create an instance of an interface, but an instance referenec variable can point to an instance of derived class object. (**)
- */
