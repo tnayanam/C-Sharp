@@ -1,55 +1,22 @@
 ﻿namespace ConsoleApplication1
 {
-    // how to utlize functionaity of multiple classes when multiple class inhetiance is not allowed
-    interface IA
-    {
-        void PrintA();
-    }
-
-    interface IB
-    {
-        void PrintB();
-    }
-
-    class A : IA
-    {
-        public void PrintA()
-        {
-            System.Console.WriteLine("I am in A class");
-        }
-    }
-
-    class B : IB
-    {
-        public void PrintB()
-        {
-            System.Console.WriteLine("I am in B class");
-        }
-    }
-
-    class C : IA, IB
-    {
-        B b = new B();
-        A a = new A();
-        public void PrintA()
-        {
-            a.PrintA();
-        }
-
-        public void PrintB()
-        {
-            b.PrintB();
-        }
-    }
+    public delegate void DelForMethod(string Message);
+    // Delegate
     class Program
     {
         static void Main(string[] args)
         {
-            C c = new C();
-            c.PrintA();
-            c.PrintB();
+            DelForMethod d1 = new DelForMethod(Add);
+            d1("Hmmm");
+        }
+        public static void Add(string strMessage)
+        {
+            System.Console.WriteLine(strMessage);
         }
     }
+
+    // delegate is a type safe function pointer
+    // signature of delegate must match the signature of the method it points too.
 }
 
 
