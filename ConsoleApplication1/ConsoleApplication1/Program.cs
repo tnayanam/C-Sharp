@@ -1,40 +1,53 @@
 ﻿namespace ConsoleApplication1
 {
-    // problem with multiple inheritance
-    class A
+    // how to utlize functionaity of multiple classes when multiple class inhetiance is not allowed
+    interface IA
     {
-        public virtual void Print()
-        {
+        void PrintA();
+    }
 
+    interface IB
+    {
+        void PrintB();
+    }
+
+    class A : IA
+    {
+        public void PrintA()
+        {
+            System.Console.WriteLine("I am in A class");
         }
     }
 
-    class B : A
+    class B : IB
     {
-        public override void Print()
+        public void PrintB()
         {
-            //base.Print();
+            System.Console.WriteLine("I am in B class");
         }
     }
 
-    class C : A
+    class C : IA, IB
     {
-        public override void Print()
+        B b = new B();
+        A a = new A();
+        public void PrintA()
         {
-            //base.Print();
+            a.PrintA();
+        }
+
+        public void PrintB()
+        {
+            b.PrintB();
         }
     }
-
-    class D : C, B // compiler merror but suppose if this was allowed and we create a instance of C and call the "POrint method" then which implementation of print method
-                   //should be calledf. B's implementation or C's implementation// this is called DIAMOND PROBLEM
-    {
-
-    }
-
     class Program
     {
         static void Main(string[] args)
         {
+            C c = new C();
+            c.PrintA();
+            c.PrintB();
         }
     }
 }
