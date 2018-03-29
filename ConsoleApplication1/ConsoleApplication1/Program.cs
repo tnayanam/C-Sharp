@@ -1,56 +1,36 @@
-﻿using System.Collections.Generic;
+﻿/*
+ * Multicast Delegate
+ * it is a delegate the references more than one function, when we invoke a multicast delegate all the delegate it points to gets invoked
+ */
 
 namespace ConsoleApplication1
 {
-    delegate bool CheckIfEligible(Employee emp);
-    // Problem when delegates are not present!
-
-    class Employee
-    {
-        public int Salary;
-        public string Name;
-        public static void PromoteEmployee(List<Employee> empL, CheckIfEligible chk)
-        {
-            foreach (var emp in empL)
-            {
-                if (chk(emp))
-                    System.Console.WriteLine(emp.Name + " promoted");
-            }
-        }
-    }
-
+    delegate void Del();
     class Program
     {
-        //public static bool IsPromotable(Employee emp)
-        //{
-        //    return (emp.Salary > 4000) ? true : false;
-        //}
-
-        //public static bool IsPromotable1(Employee emp)
-        //{
-        //    return (emp.Salary > 200) ? true : false;
-        //}
-
         static void Main(string[] args)
         {
-            List<Employee> empL = new List<Employee>
-            {
-                new Employee {Name = "Patrick", Salary = 4500 },
-                new Employee {Name = "Messy", Salary = 500 },
-                new Employee {Name = "Gordon", Salary = 200 },
-                new Employee {Name = "Marey", Salary = 5500 }
-            };
-            //CheckIfEligible c1 = new CheckIfEligible(Program.IsPromotable);
-            Employee.PromoteEmployee(empL, emp => emp.Salary > 4000);
+            Del d1 = new Del(HelloOne);
+            Del d2 = new Del(HelloTwo);
+            Del d3 = d1 + d2;
+            d3();
+            /*
+             * Output:
+             * One
+             * Two
+             */
 
-            // Now supose I want to promote based on just >200 salary then I dont need to chnage any code in the helper function/framework.
-            //c1 = new CheckIfEligible(Program.IsPromotable1);
-            Employee.PromoteEmployee(empL, emp => emp.Salary > 200);
+        }
+        public static void HelloOne()
+        {
+            System.Console.WriteLine("One");
+        }
+
+        public static void HelloTwo()
+        {
+            System.Console.WriteLine("Two");
         }
     }
-
-    // now if someone wants to change the logic of promotion of employee it has to come here and change the class methods. that sthe problem.
-    // delegates are extensively used in framweork development as we can inject our own logic to it w/o modifying the framework code.
 }
 
 
