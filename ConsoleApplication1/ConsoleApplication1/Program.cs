@@ -2,17 +2,18 @@
 
 namespace ConsoleApplication1
 {
+    delegate bool CheckIfEligible(Employee emp);
     // Problem when delegates are not present!
 
     class Employee
     {
         public int Salary;
         public string Name;
-        public static void PromoteEmployee(List<Employee> empL)
+        public static void PromoteEmployee(List<Employee> empL, CheckIfEligible chk)
         {
             foreach (var emp in empL)
             {
-                if (emp.Salary > 4000)
+                if (chk(emp))
                     System.Console.WriteLine(emp.Name + " promoted");
             }
         }
@@ -20,6 +21,16 @@ namespace ConsoleApplication1
 
     class Program
     {
+        public static bool IsPromotable(Employee emp)
+        {
+            return (emp.Salary > 4000) ? true : false;
+        }
+
+        public static bool IsPromotable1(Employee emp)
+        {
+            return (emp.Salary > 200) ? true : false;
+        }
+
         static void Main(string[] args)
         {
             List<Employee> empL = new List<Employee>
@@ -29,7 +40,12 @@ namespace ConsoleApplication1
                 new Employee {Name = "Gordon", Salary = 200 },
                 new Employee {Name = "Marey", Salary = 5500 }
             };
-            Employee.PromoteEmployee(empL);
+            CheckIfEligible c1 = new CheckIfEligible(Program.IsPromotable);
+            Employee.PromoteEmployee(empL, c1);
+
+            // Now supose I want to promote based on just >200 salary then I dont need to chnage any code in the helper function/framework.
+            c1 = new CheckIfEligible(Program.IsPromotable1);
+            Employee.PromoteEmployee(empL, c1);
         }
     }
 
