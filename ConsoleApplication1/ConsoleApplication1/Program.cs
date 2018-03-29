@@ -21,15 +21,15 @@ namespace ConsoleApplication1
 
     class Program
     {
-        public static bool IsPromotable(Employee emp)
-        {
-            return (emp.Salary > 4000) ? true : false;
-        }
+        //public static bool IsPromotable(Employee emp)
+        //{
+        //    return (emp.Salary > 4000) ? true : false;
+        //}
 
-        public static bool IsPromotable1(Employee emp)
-        {
-            return (emp.Salary > 200) ? true : false;
-        }
+        //public static bool IsPromotable1(Employee emp)
+        //{
+        //    return (emp.Salary > 200) ? true : false;
+        //}
 
         static void Main(string[] args)
         {
@@ -40,12 +40,12 @@ namespace ConsoleApplication1
                 new Employee {Name = "Gordon", Salary = 200 },
                 new Employee {Name = "Marey", Salary = 5500 }
             };
-            CheckIfEligible c1 = new CheckIfEligible(Program.IsPromotable);
-            Employee.PromoteEmployee(empL, c1);
+            //CheckIfEligible c1 = new CheckIfEligible(Program.IsPromotable);
+            Employee.PromoteEmployee(empL, emp => emp.Salary > 4000);
 
             // Now supose I want to promote based on just >200 salary then I dont need to chnage any code in the helper function/framework.
-            c1 = new CheckIfEligible(Program.IsPromotable1);
-            Employee.PromoteEmployee(empL, c1);
+            //c1 = new CheckIfEligible(Program.IsPromotable1);
+            Employee.PromoteEmployee(empL, emp => emp.Salary > 200);
         }
     }
 
