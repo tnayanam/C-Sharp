@@ -30,28 +30,17 @@
 
 // IMPORTANT EXAMPLE 2 ENUM
 
+/*
+ * Class, structs, enums, interfcaes, delegates are the TYPES
+ * Field, propertioes, constructors, methods are the TYPE MEMBERS
+ * TYPES can only have INTERNAL AND PUBLIC access modifier
+ * TYPES MEMBERS can have Provate, protected, inrtenal, propetted internal, public
+ */
+
 public class Enums
 {
     public static void Main()
     {
-        // This line will not compile. Cannot implicitly convert type 'Season' to 'Gender'. 
-        // An explicit conversion is required.
-        // Gender gender = Season.Winter;
 
-
-        // This line comiples as we have an explicit cast
-        Gender gender = (Gender)Season.Winter;
     }
-}
-public enum Gender : int
-{
-    Unknown = 1,
-    Male = 2,
-    Female = 3
-}
-public enum Season : int
-{
-    Winter = 1,
-    Spring = 2,
-    Summer = 3
 }
