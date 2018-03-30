@@ -1,58 +1,57 @@
-﻿namespace ConsoleApplication1
+﻿// IMPORTANT EXAMPLE 1 ENUM
+
+//using System;
+//public class Enums
+//{
+//    public static void Main()
+//    {
+//        int[] Values = (int[])Enum.GetValues(typeof(Gender));
+//        Console.WriteLine("Gender Enum Values");
+//        foreach (int value in Values)
+//        {
+//            Console.WriteLine(value);
+//        }
+
+//        Console.WriteLine();
+//        string[] Names = Enum.GetNames(typeof(Gender));
+//        Console.WriteLine("Gender Enum Names");
+//        foreach (string Name in Names)
+//        {
+//            Console.WriteLine(Name);
+//        }
+//    }
+//}
+//public enum Gender : int
+//{
+//    Unknown = 1,
+//    Male = 2,
+//    Female = 3
+//}
+
+// IMPORTANT EXAMPLE 2 ENUM
+
+public class Enums
 {
-    class Program
+    public static void Main()
     {
-        static void Main(string[] args)
-        {
-            Customer[] customers = new Customer[3];
-            customers[0] = new Customer
-            {
-                Name = "Tanuj",
-                Gender = Gender.Male //now by just looking at this code one canot tell what gender 1 signifies. thats why we need ENUMS
-            };
-            customers[1] = new Customer
-            {
-                Name = "Mona",
-                Gender = Gender.Female
-            };
-            customers[2] = new Customer
-            {
-                Name = "Arun",
-                Gender = Gender.Unknown
-            };
+        // This line will not compile. Cannot implicitly convert type 'Season' to 'Gender'. 
+        // An explicit conversion is required.
+        // Gender gender = Season.Winter;
 
-            foreach (var cut in customers)
-            {
-                System.Console.WriteLine(cut.Name + " " + Customer.GetGender(cut.Gender));
-            }
-        }
+
+        // This line comiples as we have an explicit cast
+        Gender gender = (Gender)Season.Winter;
     }
-
-    public enum Gender
-    {
-        Male,
-        Female,
-        Unknown
-    }
-
-    class Customer
-    {
-        public string Name { get; set; }
-        public Gender Gender { get; set; }
-
-        public static string GetGender(Gender Gender)
-        {
-            switch (Gender)
-            {
-                case Gender.Unknown:
-                    return "Unknown";
-                case Gender.Male:
-                    return "Male";
-                case Gender.Female:
-                    return "Female";
-                default:
-                    return "Invalid data detected";
-            }
-        }
-    }
+}
+public enum Gender : int
+{
+    Unknown = 1,
+    Male = 2,
+    Female = 3
+}
+public enum Season : int
+{
+    Winter = 1,
+    Spring = 2,
+    Summer = 3
 }
