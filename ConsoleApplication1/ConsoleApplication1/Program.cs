@@ -4,49 +4,59 @@
  */
 
 using System;
-using System.Runtime.Serialization;
 namespace ConsoleApplication1
 {
     class Program
     {
         static void Main(string[] args)
         {
-                try
+            try
+            {
+                Console.WriteLine("Please enter Numerator");
+                int Numerator;
+                //int.TryParse() will not throw an exception, instead returns false
+                //if the entered value cannot be converted to integer
+                bool isValidNumerator = int.TryParse(Console.ReadLine(), out Numerator);
+
+
+                if (isValidNumerator)
                 {
-                    Console.WriteLine("Please enter Numerator");
-                    int Numerator = Convert.ToInt32(Console.ReadLine());
-
-
                     Console.WriteLine("Please enter Denominator");
-                    //Convert.ToInt32() can throw FormatException, if the entered value
-                    //cannot be converted to integer. So use int.TryParse() instead
-                    int Denominator = Convert.ToInt32(Console.ReadLine());
+                    int Denominator;
+                    bool isValidDenominator = int.TryParse(Console.ReadLine(), out Denominator);
 
 
-                    int Result = Numerator / Denominator;
-
-
-                    Console.WriteLine("Result = {0}", Result);
+                    if (isValidDenominator && Denominator != 0)
+                    {
+                        int Result = Numerator / Denominator;
+                        Console.WriteLine("Result = {0}", Result);
+                    }
+                    else
+                    {
+                        //Check if the denominator is zero and print a friendly error
+                        //message instead of allowing DivideByZeroException exception 
+                        //to be thrown and then printing error message to the user.
+                        if (isValidDenominator && Denominator == 0)
+                        {
+                            Console.WriteLine("Denominator cannot be zero");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Only numbers between {0} && {1} are allowed",
+                                Int32.MinValue, Int32.MaxValue);
+                        }
+                    }
                 }
-                catch (FormatException)
+                else
                 {
-                    Console.WriteLine("Only numbers are allowed!");
+                    Console.WriteLine("Only numbers between {0} && {1} are allowed",
+                                Int32.MinValue, Int32.MaxValue);
                 }
-                catch (OverflowException)
-                {
-                    Console.WriteLine("Only numbers between {0} & {1} are allowed",
-                        Int32.MinValue, Int32.MaxValue);
-
-
-                }
-                catch (DivideByZeroException)
-                {
-                    Console.WriteLine("Denominator cannot be zero");
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
             }
         }
     }
+}
