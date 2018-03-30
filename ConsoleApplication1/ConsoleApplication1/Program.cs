@@ -1,61 +1,52 @@
-﻿/*
- * Multicast Delegate
- * it is a delegate the references more than one function, when we invoke a multicast delegate all the delegate it points to gets invoked
- */
-
-using System;
-namespace ConsoleApplication1
+﻿namespace ConsoleApplication1
 {
     class Program
     {
         static void Main(string[] args)
         {
-            try
+            Customer[] customers = new Customer[3];
+            customers[0] = new Customer
             {
-                Console.WriteLine("Please enter Numerator");
-                int Numerator;
-                //int.TryParse() will not throw an exception, instead returns false
-                //if the entered value cannot be converted to integer
-                bool isValidNumerator = int.TryParse(Console.ReadLine(), out Numerator);
+                Name = "Tanuj",
+                Gender = 1 //now by just looking at this code one canot tell what gender 1 signifies. thats why we need ENUMS
+            };
+            customers[1] = new Customer
+            {
+                Name = "Mona",
+                Gender = 0
+            };
+            customers[2] = new Customer
+            {
+                Name = "Arun",
+                Gender = 2
+            };
 
-
-                if (isValidNumerator)
-                {
-                    Console.WriteLine("Please enter Denominator");
-                    int Denominator;
-                    bool isValidDenominator = int.TryParse(Console.ReadLine(), out Denominator);
-
-
-                    if (isValidDenominator && Denominator != 0)
-                    {
-                        int Result = Numerator / Denominator;
-                        Console.WriteLine("Result = {0}", Result);
-                    }
-                    else
-                    {
-                        //Check if the denominator is zero and print a friendly error
-                        //message instead of allowing DivideByZeroException exception 
-                        //to be thrown and then printing error message to the user.
-                        if (isValidDenominator && Denominator == 0)
-                        {
-                            Console.WriteLine("Denominator cannot be zero");
-                        }
-                        else
-                        {
-                            Console.WriteLine("Only numbers between {0} && {1} are allowed",
-                                Int32.MinValue, Int32.MaxValue);
-                        }
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("Only numbers between {0} && {1} are allowed",
-                                Int32.MinValue, Int32.MaxValue);
-                }
+            foreach (var cut in customers)
+            {
+                System.Console.WriteLine(cut.Name + " " + Customer.GetGender(cut.Gender));
             }
-            catch (Exception ex)
+        }
+    }
+
+    class Customer
+    {
+        public string Name { get; set; }
+        public int Gender { get; set; }
+
+        public static string GetGender(int Gender)
+        {
+            switch (Gender)
             {
-                Console.WriteLine(ex.Message);
+                case 0:
+                    return "Unknown";
+
+                case 1:
+                    return "Male";
+
+                case 2:
+                    return "Female";
+                default:
+                    return "Invalid data detected";
             }
         }
     }
