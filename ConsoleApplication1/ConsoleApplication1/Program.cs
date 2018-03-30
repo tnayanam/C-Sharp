@@ -8,17 +8,17 @@
             customers[0] = new Customer
             {
                 Name = "Tanuj",
-                Gender = 1 //now by just looking at this code one canot tell what gender 1 signifies. thats why we need ENUMS
+                Gender = Gender.Male //now by just looking at this code one canot tell what gender 1 signifies. thats why we need ENUMS
             };
             customers[1] = new Customer
             {
                 Name = "Mona",
-                Gender = 0
+                Gender = Gender.Female
             };
             customers[2] = new Customer
             {
                 Name = "Arun",
-                Gender = 2
+                Gender = Gender.Unknown
             };
 
             foreach (var cut in customers)
@@ -28,22 +28,27 @@
         }
     }
 
+    public enum Gender
+    {
+        Male,
+        Female,
+        Unknown
+    }
+
     class Customer
     {
         public string Name { get; set; }
-        public int Gender { get; set; }
+        public Gender Gender { get; set; }
 
-        public static string GetGender(int Gender)
+        public static string GetGender(Gender Gender)
         {
             switch (Gender)
             {
-                case 0:
+                case Gender.Unknown:
                     return "Unknown";
-
-                case 1:
+                case Gender.Male:
                     return "Male";
-
-                case 2:
+                case Gender.Female:
                     return "Female";
                 default:
                     return "Invalid data detected";
