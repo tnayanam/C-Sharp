@@ -44,3 +44,11 @@ public class Enums
 
     }
 }
+
+/*
+ * public : available everywhere
+ * private: only inside the class
+ * protected: accessible in the derived class.
+ * internal:  anywhere within the containing assembly
+ * protected internal:  anywhere within the containing assmebly and from anywhere from derived class in any other assembly.
+ */
