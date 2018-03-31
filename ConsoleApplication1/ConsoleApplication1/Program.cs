@@ -51,4 +51,7 @@ public class Enums
  * protected: accessible in the derived class.
  * internal:  anywhere within the containing assembly
  * protected internal:  anywhere within the containing assmebly and from anywhere from derived class in any other assembly.
+ * 
+ * default access modifiers of type  members is private
+ * default access modfiers of type is internal
  */
