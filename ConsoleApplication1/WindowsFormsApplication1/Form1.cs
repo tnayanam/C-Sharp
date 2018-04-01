@@ -16,7 +16,9 @@ namespace WindowsFormsApplication1
             btnDoTimeConsumingWork.Enabled = false;
             btnPrintNumbers.Enabled = false;
 
-            DoTimeConsumingWork();
+            Thread workerThread = new Thread(DoTimeConsumingWork);
+            workerThread.Start();
+            //DoTimeConsumingWork();
 
             btnDoTimeConsumingWork.Enabled = true;
             btnPrintNumbers.Enabled = true;
@@ -25,6 +27,7 @@ namespace WindowsFormsApplication1
         public void DoTimeConsumingWork()
         {
             Thread.Sleep(5000);
+            MessageBox.Show("Time Consuming Work Ended");
         }
 
         private void btnPrintNumbers_Click(object sender, EventArgs e)
