@@ -23,9 +23,20 @@ namespace ThreadStartDelegateExample
             }
             // 1 sec now this main will just wait for 2 second for the thread `1 to join it. if it does not join main will proceed
             T2.Join();
+
+            if (T1.IsAlive) // is to check whether T1 is still running or its done
+            {
+                System.Console.WriteLine("ThreadOne Cstill prcessing");
+            }
+            else
+            {
+                System.Console.WriteLine("ThreadOne not compete");
+            }
             System.Console.WriteLine("ThreadTwo Completed");
             // so now the main method will not execute unless t1 and t2 finish its execution and merges back to main UI thread
             System.Console.WriteLine("Main Thread End.");
+
+
         }
 
         public static void ThreadOne()
@@ -49,6 +60,7 @@ namespace ThreadStartDelegateExample
 //ThreadOne Started.
 //ThreadTwo Started.
 //ThreadOne Still Processing
+//ThreadOne Cstill prcessing
 //ThreadTwo Completed
 //Main Thread End.
 //ThredaOne is now about to complete
