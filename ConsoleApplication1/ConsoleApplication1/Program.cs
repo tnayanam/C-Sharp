@@ -13,8 +13,15 @@ namespace ThreadStartDelegateExample
             Thread T2 = new Thread(ThreadTwo);
             T2.Start();
 
-            T1.Join(2000); // 1 sec now this main will just wait for 2 second for the thread `1 to join it. if it does not join main will proceed
-            System.Console.WriteLine("ThreadOne Completed");
+            if (T1.Join(2000)) // it return true if it finds that thread has joined the main thread. which will be No in this case
+            {
+                System.Console.WriteLine("ThreadOne Completed");
+            }
+            else
+            {
+                System.Console.WriteLine("ThreadOne Still Processing");
+            }
+            // 1 sec now this main will just wait for 2 second for the thread `1 to join it. if it does not join main will proceed
             T2.Join();
             System.Console.WriteLine("ThreadTwo Completed");
             // so now the main method will not execute unless t1 and t2 finish its execution and merges back to main UI thread
@@ -41,11 +48,14 @@ namespace ThreadStartDelegateExample
 //Main Thread Started.
 //ThreadOne Started.
 //ThreadTwo Started.
-//ThreadOne Completed // clearly see here that main did not wait for the thread 1 to reutrn after 2 sceond and it proceed further
+//ThreadOne Still Processing
 //ThreadTwo Completed
 //Main Thread End.
 //ThredaOne is now about to complete
 //Press any key to continue . . .
+
+
+
 
 
 
