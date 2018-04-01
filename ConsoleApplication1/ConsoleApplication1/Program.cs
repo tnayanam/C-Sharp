@@ -2,7 +2,7 @@
 
 namespace ThreadStartDelegateExample
 {
-
+    // suppose we want to guarantee that main method only ends after threa 1 and thread 2 has been executed. Then we need to do something like below
     class Program
     {
         public static void Main()
@@ -12,6 +12,11 @@ namespace ThreadStartDelegateExample
             T1.Start();
             Thread T2 = new Thread(ThreadTwo);
             T2.Start();
+            T1.Join();
+            System.Console.WriteLine("ThreadOne Completed");
+            T2.Join();
+            System.Console.WriteLine("ThreadTwo Completed");
+            // so now the main method will not execute unless t1 and t2 finish its execution and merges back to main UI thread
             System.Console.WriteLine("Main Thread End.");
         }
 
@@ -25,22 +30,17 @@ namespace ThreadStartDelegateExample
             System.Console.WriteLine("ThreadTwo Started.");
         }
     }
-
-
 }
 
-//// Output
-//Main Thread Started.
-//ThreadOne Started.
-//Main Thread End.
-//ThreadTwo Started.
-//Press any key to continue . . .
-
-// Output 2:
+//// Same Output all the time
 //Main Thread Started.
 //ThreadOne Started.
 //ThreadTwo Started.
 //Main Thread End.
 //Press any key to continue . . .
 
-// Note thatn sequence is undetermined. Because anythread can start any sequence and main method does not wait for any of the threads.
+
+
+
+
+
