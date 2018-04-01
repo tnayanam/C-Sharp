@@ -1,33 +1,50 @@
-﻿using System.Text;
+﻿using System;
+using System.Threading;
 
-namespace Pragim
+namespace ThreadStartDelegateExample
 {
-    public class MainClass
+    class Program
     {
-        private static void Main()
+        public static void Main()
         {
-            string name = string.Empty;
-            name += "Tanuj"; // new mmeory space with tanuj
+            // Prompt the user for the target number
+            Console.WriteLine("Please enter the target number");
+            // Read from the console and store it in target variable
+            int target = Convert.ToInt32(Console.ReadLine());
 
-            name += " Nayanam"; // new memory space with tanuj nayanam
-            name += " is"; // new memory space with tanuj nayanam is
-            name += " a";
-            name += " Dumb";
-            name += " Boy";
-            System.Console.WriteLine(name);
+            // Create an instance of the Number class, passing it
+            // the target number that was read from the console
+            Number number = new Number(target);
+            // Specify the Thread function
+            Thread T1 = new Thread(new ThreadStart(number.PrintNumbers));
+            // Alternatively we can just use Thread class constructor as shown below
+            // Thread T1 = new Thread(number.PrintNumbers);
+            T1.Start();
+        }
+    }
 
-            StringBuilder name1 = new StringBuilder();
-            name1.Append("Tanuj");
-            name1.Append(" Nayanam");
-            name1.Append(" is");
-            name1.Append(" a");
-            name1.Append(" Dumb");
-            name1.Append(" Boy");
-            System.Console.WriteLine(name1);
+    // Number class also contains the data it needs to print the numbers
+    class Number
+    {
+        int _target;
+        // When an instance is created, the target number needs to be specified
+        public Number(int target)
+        {
+            // The targer number is then stored in the class private variable _target
+            this._target = target;
+        }
+
+        // Function prints the numbers from 1 to the traget number that the user provided
+        public void PrintNumbers()
+        {
+            for (int i = 1; i <= _target; i++)
+            {
+                Console.WriteLine(i);
+            }
         }
     }
 }
 
-// output is same bu string is immutable where is stringbuiilder is mutable
-// that means that when ever we assing a new value to streing a separeate memore is create to store the string and old memory is left orphanced. thus we see serious pperfomrance issue. So we should always use string builder because sam mempry space is used. nothing is or[haned
-
+// see how cleverly during the class instance we need to provide the target by this now we will use threadstart delegate asd
+// we no more need to pass the data via delegate call. Also, note that we have not provided default constructor int he Number
+// class so one has to pass the target number. thus how cleverly we made everything type sae.
