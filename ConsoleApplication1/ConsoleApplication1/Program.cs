@@ -82,5 +82,34 @@ namespace Pragim
  * Use ofd reflection
  * late binding
  * 
+ * OUTPUT:
+ * 
+ * Full Name = Pragim.Customer
+Just the Class Name = Customer
+Just the Namespace = Pragim
+
+Methods in Customer Class
+Int32 get_Id
+Void set_Id
+String get_Name
+Void set_Name
+Void PrintID
+Void PrintName
+String ToString
+Boolean Equals
+Int32 GetHashCode
+Type GetType
+
+Properties in Customer Class
+Int32 Id
+String Name
+
+Constructors in Customer Class
+Void .ctor(Int32, System.String)
+Void .ctor()
+Press any key to continue . . .
+
+
+
  */
 
