@@ -1,35 +1,23 @@
-﻿namespace Pragim
+﻿using System;
+
+namespace Pragim
 {
     public class MainClass
     {
         private static void Main()
         {
-            System.Console.WriteLine(Comparer.IsEqual("ABC", "ABC"));
+            Customer c1 = new Customer();
+            System.Console.WriteLine(c1.ToString()); //  Pragim.Customer
+            System.Console.WriteLine(Convert.ToString(c1));  //  Pragim.Customer
+            Customer c2 = null;
+            System.Console.WriteLine(Convert.ToString(c2));  // ""
+            System.Console.WriteLine(c2.ToString()); // Exception
         }
     }
 
-    public class Comparer
+    public class Customer
     {
-        public static bool IsEqual<T>(T FN, T SN)
-        {
-            return FN.Equals(SN);
-        }
+        public string FName { get; set; }
     }
 }
 
-/*
- * Generics allow us to design classes and methods decoupled from the data types
- * 
- * we can always use object instead of <T> because every class is derived from boject.
- * but Performance degradation happens due to boxing and unboxing. if ewwe pass integet
- * then that integer is a value type and it needs to egt converted to a object ttype
- * 
- *     public class Comparer
-    {
-        public static bool IsEqual(object FN, object SN)
-        {
-            return FN.Equals(SN);
-        }
-    }
- * 
- */
