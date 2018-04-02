@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AsyncAwait
@@ -13,12 +12,18 @@ namespace AsyncAwait
             InitializeComponent();
         }
 
-        private async void btnProcess_Click(object sender, EventArgs e)
+        private void btnProcess_Click(object sender, EventArgs e)
         {
-            Task<int> t1 = new Task<int>(CountCharacter);
-            t1.Start();
+            int count = 0;
+            //Task<int> t1 = new Task<int>(CountCharacter);
+            //t1.Start();
+            //Thread t2 = new Thread(CountCharacter); since the thread is returning something we need to use lamda expressions
+            Thread t2 = new Thread(() => { count = CountCharacter(); }); // lamda expression
+            t2.Start();
             lblCount.Text = "Processing File Please Wait..";
-            int count = await t1; // as long as the process is completing appliation will be NOT Responsive
+            t2.Join(); // this will make sure UI thread is waiting for the countchracter function to finish excuting and join main thread
+            // but the problem now is our UI become un respionsive till the time the main is waiting for the t2 to fnish execution
+            // it was not happening in Task Example.
             lblCount.Text = count.ToString();
         }
 
