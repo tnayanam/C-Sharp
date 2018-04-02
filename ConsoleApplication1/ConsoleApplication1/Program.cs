@@ -7,11 +7,8 @@ class Program
     public static void Main()
     {
         Thread th1 = new Thread(AddOneMillion);
-        AddOneMillion();
         Thread th2 = new Thread(AddOneMillion);
-        AddOneMillion();
         Thread th3 = new Thread(AddOneMillion);
-        AddOneMillion();
         th1.Start();
         th2.Start();
         th3.Start();
@@ -21,13 +18,17 @@ class Program
         Console.WriteLine("Total = " + Total);
     }
 
+    static object _lock = new object();
+
     public static void AddOneMillion()
     {
         for (int i = 1; i <= 1000000; i++)
         {
-            Total++;
+            lock (_lock)
+            {
+                Total++;
+            }
         }
     }
 }
-// Eveytime we are gettig different vslues because Total is a shared resource thus all thread shares its avlue and thus issue occurs.
-// ech thread starts adding to total when total has alredy been incremented by sme counter by other threads. 
+// now it is locked adn we will get 3000000 all the time and it will not change.
