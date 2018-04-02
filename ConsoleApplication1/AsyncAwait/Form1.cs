@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AsyncAwait
@@ -12,10 +13,13 @@ namespace AsyncAwait
             InitializeComponent();
         }
 
-        private void btnProcess_Click(object sender, EventArgs e)
+        private async void btnProcess_Click(object sender, EventArgs e)
         {
+            Task<int> t1 = new Task<int>(CountCharacter);
+            t1.Start();
             lblCount.Text = "Processing File Please Wait..";
-            lblCount.Text = CountCharacter().ToString(); // as long as the process is completing appliation will be NOT Responsive
+            int count = await t1; // as long as the process is completing appliation will be NOT Responsive
+            lblCount.Text = count.ToString();
         }
 
         public static int CountCharacter()
