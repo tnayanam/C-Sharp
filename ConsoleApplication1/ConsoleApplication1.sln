@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication1", "Cons
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsApplication1", "WindowsFormsApplication1\WindowsFormsApplication1.csproj", "{79F32568-01D9-4F71-8F4C-744B606B17AE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsyncAwait", "AsyncAwait\AsyncAwait.csproj", "{7019B7D3-9D84-4A44-8CDA-D1F57E9AA29B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{79F32568-01D9-4F71-8F4C-744B606B17AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{79F32568-01D9-4F71-8F4C-744B606B17AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{79F32568-01D9-4F71-8F4C-744B606B17AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7019B7D3-9D84-4A44-8CDA-D1F57E9AA29B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7019B7D3-9D84-4A44-8CDA-D1F57E9AA29B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7019B7D3-9D84-4A44-8CDA-D1F57E9AA29B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7019B7D3-9D84-4A44-8CDA-D1F57E9AA29B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
