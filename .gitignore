@@ -7,3 +7,5 @@
 *.exe.config
 *.csproj
 *.dll
+obj
+bin
