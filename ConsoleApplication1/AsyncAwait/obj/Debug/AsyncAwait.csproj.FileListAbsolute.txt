@@ -1,9 +1,0 @@
-C:\Users\lenovo\Desktop\demo\C Sharp\ConsoleApplication1\AsyncAwait\bin\Debug\AsyncAwait.exe.config
-C:\Users\lenovo\Desktop\demo\C Sharp\ConsoleApplication1\AsyncAwait\bin\Debug\AsyncAwait.exe
-C:\Users\lenovo\Desktop\demo\C Sharp\ConsoleApplication1\AsyncAwait\bin\Debug\AsyncAwait.pdb
-C:\Users\lenovo\Desktop\demo\C Sharp\ConsoleApplication1\AsyncAwait\obj\Debug\AsyncAwait.csprojResolveAssemblyReference.cache
-C:\Users\lenovo\Desktop\demo\C Sharp\ConsoleApplication1\AsyncAwait\obj\Debug\AsyncAwait.Form1.resources
-C:\Users\lenovo\Desktop\demo\C Sharp\ConsoleApplication1\AsyncAwait\obj\Debug\AsyncAwait.Properties.Resources.resources
-C:\Users\lenovo\Desktop\demo\C Sharp\ConsoleApplication1\AsyncAwait\obj\Debug\AsyncAwait.csproj.GenerateResource.Cache
-C:\Users\lenovo\Desktop\demo\C Sharp\ConsoleApplication1\AsyncAwait\obj\Debug\AsyncAwait.exe
-C:\Users\lenovo\Desktop\demo\C Sharp\ConsoleApplication1\AsyncAwait\obj\Debug\AsyncAwait.pdb
