@@ -2,3 +2,5 @@
 *.exe
 *.Cache
 *.suo
+*.sln
+*.txt
