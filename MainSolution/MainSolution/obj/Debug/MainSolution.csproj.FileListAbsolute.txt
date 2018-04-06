@@ -1,0 +1,5 @@
+C:\Users\lenovo\Desktop\demo\CShrp\MainSolution\MainSolution\bin\Debug\MainSolution.exe.config
+C:\Users\lenovo\Desktop\demo\CShrp\MainSolution\MainSolution\bin\Debug\MainSolution.exe
+C:\Users\lenovo\Desktop\demo\CShrp\MainSolution\MainSolution\bin\Debug\MainSolution.pdb
+C:\Users\lenovo\Desktop\demo\CShrp\MainSolution\MainSolution\obj\Debug\MainSolution.exe
+C:\Users\lenovo\Desktop\demo\CShrp\MainSolution\MainSolution\obj\Debug\MainSolution.pdb
