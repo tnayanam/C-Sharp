@@ -17,13 +17,17 @@ namespace WebApplication1
 
             // User defined Indexer
             Company c1 = new Company();
-            Response.Write("Employee 1 is " + c1[1]);
+            //Response.Write("Employee 1 is " + c1[1]);
 
+            //Response.Write("<br/>");
+            //Response.Write("Changing name of emp 1");
+            //Response.Write("<br/>");
+            //c1[1] = "Nesta";
+            //Response.Write("Employee 1 is " + c1[1]);
+            Response.Write("Number of male are:" + c1["Male"]);
+            c1["Male"] = "Female";
             Response.Write("<br/>");
-            Response.Write("Changing name of emp 1");
-            Response.Write("<br/>");
-            c1[1] = "Nesta";
-            Response.Write("Employee 1 is " + c1[1]);
+            Response.Write("Number of male are:" + c1["Male"]);
         }
     }
 
@@ -62,6 +66,22 @@ namespace WebApplication1
             }
         }
 
+        public string this[string gender]
+        {
+            get
+            {
+                return _lstEmp.Count(emp => emp.Gender == gender).ToString();
+            }
+            set
+            {
+                foreach (var emp in _lstEmp)
+                {
+                    if (emp.Gender == gender)
+                        emp.Gender = value;
+                }
+            }
+        }
+
     }
 }
 
@@ -91,4 +111,8 @@ namespace WebApplication1
         //     The session-state value with the specified name, or null if the item does not
         //     exist.
         public object this[string name] { get; set; }
+
+    // OUTPUT
+    Number of male are:3
+Number of male are:0
  */
