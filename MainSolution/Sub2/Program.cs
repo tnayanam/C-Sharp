@@ -6,32 +6,41 @@
         {
             try
             {
-                MethodThrowingException(2, 0);
-                // expression 1
-                // expression 2
+                if (MethodThrowingException(2, 0))
+                {
+                    // expression 1
+                    // expression 2
+                }
+                else
+                {
+                    // handle exception here
+                }
             }
             catch (System.Exception)
             {
 
-                // now handle the exception again here if you want to
-                // but now expression 1 and expression 2 will not execute during exception
+                // now this will come into picture
+                // expression 1 and expression 2 will not execute
             }
 
         }
 
-        public static void MethodThrowingException(int num, int div)
+        public static bool MethodThrowingException(int num, int div)
         {
+            bool ret = false;
             try
             {
                 int res = num / div;
                 // exp 1 some other expression
+                ret = true; // this will not execute
             }
             catch (System.Exception)
             {
                 // some exception occured write it to database
                 // exp 1 will not execute
-                throw;
+                return ret;
             }
+            return ret;
 
             // do some operation in db
         }
