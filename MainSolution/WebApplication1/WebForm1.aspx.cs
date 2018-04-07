@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace WebApplication1
 {
@@ -6,13 +8,60 @@ namespace WebApplication1
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Session["First"] = "Tanuj"; // Indexer
-            Session["Last"] = "Nayanam"; // Indexer
+            //Session["First"] = "Tanuj"; // Indexer
+            //Session["Last"] = "Nayanam"; // Indexer
 
-            Response.Write(Session["First"]);
+            //Response.Write(Session["First"]);
+            //Response.Write("<br/>");
+            //Response.Write(Session["Last"]);
+
+            // User defined Indexer
+            Company c1 = new Company();
+            Response.Write("Employee 1 is " + c1[1]);
+
             Response.Write("<br/>");
-            Response.Write(Session["Last"]);
+            Response.Write("Changing name of emp 1");
+            Response.Write("<br/>");
+            c1[1] = "Nesta";
+            Response.Write("Employee 1 is " + c1[1]);
         }
+    }
+
+    public class Employee
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Gender { get; set; }
+    }
+
+    public class Company
+    {
+        private List<Employee> _lstEmp { get; set; }
+
+        public Company()
+        {
+            _lstEmp = new List<Employee>();
+            _lstEmp.Add(new Employee { Gender = "Male", Id = 1, Name = "John" });
+            _lstEmp.Add(new Employee { Gender = "FeMale", Id = 2, Name = "Reva" });
+            _lstEmp.Add(new Employee { Gender = "FeMale", Id = 3, Name = "July" });
+            _lstEmp.Add(new Employee { Gender = "FeMale", Id = 4, Name = "Lily" });
+            _lstEmp.Add(new Employee { Gender = "Male", Id = 5, Name = "Johnathon" });
+            _lstEmp.Add(new Employee { Gender = "FeMale", Id = 6, Name = "Christina" });
+            _lstEmp.Add(new Employee { Gender = "Male", Id = 7, Name = "Rick" });
+        }
+
+        public string this[int id]
+        {
+            get
+            {
+                return _lstEmp.FirstOrDefault(e => e.Id == id).Name.ToString();
+            }
+            set
+            {
+                _lstEmp.FirstOrDefault(e => e.Id == id).Name = value;
+            }
+        }
+
     }
 }
 
