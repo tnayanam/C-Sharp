@@ -9,3 +9,16 @@
 *.dll
 obj
 bin
+*.js
+*.css
+*.ttf
+packages
+*.ps1
+*.config
+*.ascx.designer.cs
+*.aspx.designer.cs
+*.svg
+*.eot
+*.woff
+*.map
+*.ico
