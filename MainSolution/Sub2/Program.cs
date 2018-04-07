@@ -13,5 +13,5 @@
 }
 
 // delimeter is the space. so outputis Hello and then World
-
+// If you want values directly to this file stand alone select this exe then right clik on this project and go to debugger section and add the parameter with space separatd
 
