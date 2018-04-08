@@ -105,10 +105,6 @@ public class Customer : IComparable<Customer>
 
     public int CompareTo(Customer other)
     {
-        if (this.Salary > other.Salary)
-            return 1;
-        else if (this.Salary < other.Salary)
-            return -1;
-        else return 0;
+        return this.Salary.CompareTo(other.Salary); // int implements compare to so we can use it.
     }
 }
