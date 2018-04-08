@@ -92,7 +92,7 @@ public class Program
         Console.WriteLine("Customers after sorting");
         foreach (Customer customer in listCustomers)
         {
-            Console.WriteLine(customer.Salary);
+            Console.WriteLine(customer.Name);
         }
     }
 }
@@ -105,6 +105,6 @@ public class Customer : IComparable<Customer>
 
     public int CompareTo(Customer other)
     {
-        return this.Salary.CompareTo(other.Salary); // int implements compare to so we can use it.
+        return this.Name.CompareTo(other.Name); // int implements compare to so we can use it.
     }
 }
