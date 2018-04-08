@@ -9,11 +9,11 @@ namespace Sub2
             Add(5, 10);
         }
 
-        public static void Add(int num1, int num2, params int[] nums) // params needs to be last parameter
+        public static void Add(int num1, int num2, int[] nums = null)
         {
             int sum = 0;
             sum = num1 + num2;
-            if (nums.Length != 0)
+            if (nums != null)
             {
                 sum += nums.Sum();
             }
