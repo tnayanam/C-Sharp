@@ -13,20 +13,90 @@ namespace Sub2
             Customer c3 = new Customer { Id = 3, Name = "Check", Salary = 6500 };
             Customer c4 = new Customer { Id = 4, Name = "Smith", Salary = 3500 };
             Customer c5 = new Customer { Id = 5, Name = "Singh", Salary = 500 };
-            cs[0] = c1;
-            cs[1] = c2;
-            cs[2] = c3;
-            cs[3] = c4;
-            cs[4] = c5;
-            // convert array to dict. key is id value is customer itself
+            List<Customer> lst = new List<Customer>();
+            lst.Add(c1);
+            lst.Add(c2);
+            lst.Add(c3);
+            lst.Add(c4);
+            lst.Add(c5);
 
-
-            Dictionary<int, Customer> dict = cs.ToDictionary(c => c.Id, c => c);
-
-            foreach (var Cust in dict)
+            foreach (var ls in lst)
             {
-                System.Console.WriteLine(Cust.Value.Name);
+                System.Console.WriteLine("Name: {0}", ls.Name);
             }
+            // index starts with 0
+            System.Console.WriteLine(lst[0].Name);
+            // list are bascially expandable arrays.
+            // l;ist are strongly typed
+            //if we do something like below
+            //lst.Add(12);// only customer can be added
+            // insert a customer in a specific location, pushes rest of tge lement down
+            // current output
+            //            Name: John
+            //Name: Cena
+            //Name: Check
+            //Name: Smith
+            //Name: Singh
+            lst.Insert(0, c5);
+            foreach (var ls in lst)
+            {
+                System.Console.WriteLine("Name: {0}", ls.Name);
+            }
+            // new output
+            //            Name: Singh
+            //Name: John
+            //Name: Cena
+            //Name: Check
+            //Name: Smith
+            //Name: Singh
+
+            // to find index of
+            System.Console.WriteLine(lst.IndexOf(c3));
+            System.Console.WriteLine(lst.IndexOf(c5)); // output = 0
+            // fiund index but start searcing from where
+            System.Console.WriteLine(lst.IndexOf(c5, 1)); //outp[ut 5 
+
+            if (lst.Contains(c3))
+            {
+                System.Console.WriteLine("customer 3 exist");
+            }
+            else
+            {
+                System.Console.WriteLine("cusotomr 3 does not exist");
+            }
+            // exists we can put a condition lambda expression
+            if (lst.Exists(c => c.Name.StartsWith("J")))
+            {
+                System.Console.WriteLine("Name with J exists");
+            }
+            else
+            {
+                System.Console.WriteLine("Does not exist");
+            }
+
+            // finds first matching element from list
+            Customer ct = lst.Find(cust => cust.Salary > 7000);
+            System.Console.WriteLine(ct.Name + ct.Salary);
+            // find last returns the last matcing element
+            Customer ctt = lst.FindLast(cust => cust.Salary > 7000);
+            System.Console.WriteLine(ctt.Name + ctt.Salary);
+            System.Console.WriteLine("---------------");
+            // find all returns all the cstomer that matches the condition
+            List<Customer> cttt = lst.FindAll(cust => cust.Salary > 6000);
+            foreach (var item in cttt)
+            {
+                System.Console.WriteLine(item.Name);
+            }
+
+            // find index
+            lst.FindIndex(c => c.Name == "John");
+
+            Customer[] carr = new Customer[3];
+            carr[0] = new Customer { Id = 1, Name = "Hello", Salary = 6700 };
+            carr[1] = new Customer { Id = 2, Name = "Hello", Salary = 6700 };
+            carr[2] = new Customer { Id = 3, Name = "Hello", Salary = 6700 };
+            carr.ToList(); // array to list
+
 
         }
     }
