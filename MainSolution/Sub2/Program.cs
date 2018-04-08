@@ -1,18 +1,33 @@
-﻿namespace Sub2
+﻿using System;
+using System.Runtime.InteropServices;
+
+namespace Sub2
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Add(5, num3: 2); // I only want to pass value fo num1 and num 3
+            Add(5, 5); // I only want to pass value fo num1 and num 3
         }
 
-        public static void Add(int num1, int num2 = 4, int num3 = 8)
+        public static void Add(int firstNumber, int secondNumber,
+            [Optional] int[] restOfTheNumbers)
         {
-            System.Console.WriteLine("num1: " + num1);
-            System.Console.WriteLine("num2: " + num2);
-            System.Console.WriteLine("num3: " + num3);
+            int result = firstNumber + secondNumber;
+
+            // loop thru restOfTheNumbers only if it is not null
+            // otherwise you will get a null reference exception
+            if (restOfTheNumbers != null)
+            {
+                foreach (int i in restOfTheNumbers)
+                {
+                    result += i;
+                }
+            }
+
+            Console.WriteLine("Total = " + result.ToString());
         }
+
     }
 
 }
