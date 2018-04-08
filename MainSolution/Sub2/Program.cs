@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Sub2
 {
@@ -35,12 +36,33 @@ namespace Sub2
                 dict.Add(c1.Id, c5);
             }
 
-            foreach (var dic in dict)
+            Customer ctemp = new Customer();
+            // if key exists
+            if (dict.TryGetValue(2, out ctemp))
             {
-                System.Console.WriteLine("Key: " + dic.Key);
-                System.Console.WriteLine("Name: " + dic.Value.Name);
-                System.Console.WriteLine("Salary: " + dic.Value.Salary);
+                System.Console.WriteLine(ctemp.Name);
+                System.Console.WriteLine(ctemp.Salary);
             }
+            else
+            {
+                System.Console.WriteLine("key does not exist");
+            }
+            // count
+            System.Console.WriteLine(dict.Count); // 
+            System.Console.WriteLine(dict.Count()); // linq
+            System.Console.WriteLine("");
+            System.Console.WriteLine("Salary greateer then 3000 " + dict.Count(d => d.Value.Salary > 3000)); // linq with condition
+            // delete
+            dict.Remove(2);
+            // delete all items
+            dict.Clear();
+
+            //foreach (var dic in dict)
+            //{
+            //    System.Console.WriteLine("Key: " + dic.Key);
+            //    System.Console.WriteLine("Name: " + dic.Value.Name);
+            //    System.Console.WriteLine("Salary: " + dic.Value.Salary);
+            //}
         }
     }
 
