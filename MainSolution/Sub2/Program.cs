@@ -1,5 +1,4 @@
-﻿using System;
-using System.Runtime.InteropServices;
+﻿using System.Collections.Generic;
 
 namespace Sub2
 {
@@ -7,31 +6,53 @@ namespace Sub2
     {
         static void Main(string[] args)
         {
-            Add(5, 5); // I only want to pass value fo num1 and num 3
-        }
+            Customer c1 = new Customer { Id = 1, Name = "John", Salary = 4500 };
+            Customer c2 = new Customer { Id = 2, Name = "Cena", Salary = 7800 };
+            Customer c3 = new Customer { Id = 3, Name = "Check", Salary = 6500 };
+            Customer c4 = new Customer { Id = 4, Name = "Smith", Salary = 3500 };
+            Customer c5 = new Customer { Id = 5, Name = "Singh", Salary = 500 };
 
-        public static void Add(int firstNumber, int secondNumber,
-            [Optional] int[] restOfTheNumbers)
-        {
-            int result = firstNumber + secondNumber;
-
-            // loop thru restOfTheNumbers only if it is not null
-            // otherwise you will get a null reference exception
-            if (restOfTheNumbers != null)
+            Dictionary<int, Customer> dict = new Dictionary<int, Customer>();
+            dict.Add(c1.Id, c1);
+            dict.Add(c2.Id, c2);
+            dict.Add(c3.Id, c3);
+            dict.Add(c4.Id, c4);
+            dict.Add(c5.Id, c5);
+            // this will throw exception
+            //dict.Add(c1.Id, c5);
+            // checks f key already present., if presernt returns true.
+            if (!dict.ContainsKey(c1.Id))
             {
-                foreach (int i in restOfTheNumbers)
-                {
-                    result += i;
-                }
+                System.Console.WriteLine("If key is not presernt then only we will add");
+                dict.Add(c1.Id, c5);
+            }
+            // this will throw exception because that key does not exist.
+            //System.Console.WriteLine(dict[34].Name);
+
+            if (dict.ContainsKey(34))
+            {
+                System.Console.WriteLine("If key is not presernt then only we will add");
+                dict.Add(c1.Id, c5);
             }
 
-            Console.WriteLine("Total = " + result.ToString());
+            foreach (var dic in dict)
+            {
+                System.Console.WriteLine("Key: " + dic.Key);
+                System.Console.WriteLine("Name: " + dic.Value.Name);
+                System.Console.WriteLine("Salary: " + dic.Value.Salary);
+            }
         }
-
     }
 
+    class Customer
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public int Salary { get; set; }
+    }
 }
 
-// delimeter is the space. so outputis Hello and then World
-// If you want values directly to this file stand alone select this exe then right clik on this project and go to debugger section and add the parameter with space separatd
-
+/*
+ * Dictionary provides fast look up.
+ * 
+ */
