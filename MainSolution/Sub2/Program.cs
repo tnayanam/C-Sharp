@@ -1,48 +1,23 @@
-﻿namespace Sub2
+﻿using System.Linq;
+
+namespace Sub2
 {
     class Program
     {
         static void Main(string[] args)
         {
-            try
-            {
-                if (MethodThrowingException(2, 0))
-                {
-                    // expression 1
-                    // expression 2
-                }
-                else
-                {
-                    // handle exception here
-                }
-            }
-            catch (System.Exception)
-            {
-
-                // now this will come into picture
-                // expression 1 and expression 2 will not execute
-            }
-
+            Add(5, 10);
         }
 
-        public static bool MethodThrowingException(int num, int div)
+        public static void Add(int num1, int num2, params int[] nums) // params needs to be last parameter
         {
-            bool ret = false;
-            try
+            int sum = 0;
+            sum = num1 + num2;
+            if (nums.Length != 0)
             {
-                int res = num / div;
-                // exp 1 some other expression
-                ret = true; // this will not execute
+                sum += nums.Sum();
             }
-            catch (System.Exception)
-            {
-                // some exception occured write it to database
-                // exp 1 will not execute
-                return ret;
-            }
-            return ret;
-
-            // do some operation in db
+            System.Console.WriteLine(sum);
         }
     }
 
