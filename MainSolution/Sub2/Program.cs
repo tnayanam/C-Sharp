@@ -93,11 +93,32 @@ namespace Sub2
 
             Customer[] carr = new Customer[3];
             carr[0] = new Customer { Id = 1, Name = "Hello", Salary = 6700 };
-            carr[1] = new Customer { Id = 2, Name = "Hello", Salary = 6700 };
-            carr[2] = new Customer { Id = 3, Name = "Hello", Salary = 6700 };
-            carr.ToList(); // array to list
+            carr[1] = new Customer { Id = 2, Name = "Foo", Salary = 6700 };
+            carr[2] = new Customer { Id = 3, Name = "Bar", Salary = 6700 };
+            List<Customer> cr = carr.ToList(); // array to list
 
+            // add range allows to add a list to a list
 
+            cr.AddRange(lst);
+            foreach (var item in cr)
+            {
+                System.Console.WriteLine(item.Name);
+            }
+            // get multipl items
+            List<Customer> cf = cr.GetRange(2, 5); // from index positin 2 we wat 5 items
+            System.Console.WriteLine("-----------------");
+
+            foreach (var item in cf)
+            {
+                System.Console.WriteLine(item.Name);
+            }
+            // remove
+            cf.Remove(carr[0]);
+            cf.RemoveAt(3);
+            cf.RemoveRange(0, 3);
+            cf.RemoveAll(d => d.Salary > 4000);
+            cf.RemoveRange(2, 4);
+            cf.Clear();
         }
     }
 
