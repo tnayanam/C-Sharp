@@ -58,14 +58,14 @@ public class Program
         Customer customer1 = new Customer()
         {
             ID = 101,
-            Name = "Mark",
+            Name = "Zark",
             Salary = 4000
         };
 
         Customer customer2 = new Customer()
         {
             ID = 102,
-            Name = "Pam",
+            Name = "Mam",
             Salary = 7000
         };
 
@@ -86,24 +86,29 @@ public class Program
         {
             Console.WriteLine(customer.Name);
         }
-
-        // Invoking Sort() on list of complex types will 
-        // throw invalid operation exception, unless 
-        // IComparable interface is implemented
+        // workig fine now
         listCustomers.Sort();
 
         Console.WriteLine("Customers after sorting");
         foreach (Customer customer in listCustomers)
         {
-            Console.WriteLine(customer.Name);
+            Console.WriteLine(customer.Salary);
         }
     }
 }
 
-public class Customer
+public class Customer : IComparable<Customer>
 {
     public int ID { get; set; }
     public string Name { get; set; }
     public int Salary { get; set; }
 
+    public int CompareTo(Customer other)
+    {
+        if (this.Salary > other.Salary)
+            return 1;
+        else if (this.Salary < other.Salary)
+            return -1;
+        else return 0;
+    }
 }
