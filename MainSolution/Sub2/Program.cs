@@ -1,134 +1,81 @@
-﻿using System;
-using System.Collections.Generic;
-
-public class Program
+﻿public class Program
 {
     public static void Main()
     {
-        List<int> numbers = new List<int> { 1, 8, 7, 5, 2, 3, 4, 9, 6 };
-
-        Console.WriteLine("Numbers before sorting");
-        foreach (int i in numbers)
-        {
-            Console.WriteLine(i);
-        }
-
-        // Sort() will sort data in ascending order 
-        numbers.Sort();
-
-        Console.WriteLine("Numbers after sorting");
-        foreach (int i in numbers)
-        {
-            Console.WriteLine(i);
-        }
-
-        // Use Reverse() method to retrieve data in descending order
-        numbers.Reverse();
-
-        Console.WriteLine("Numbers in descending order");
-        foreach (int i in numbers)
-        {
-            Console.WriteLine(i);
-        }
-
-        List<string> alphabets = new List<string>() { "B", "F", "D", "E", "A", "C" };
-
-        Console.WriteLine("Alphabets before sorting");
-        foreach (string alphabet in alphabets)
-        {
-            Console.WriteLine(alphabet);
-        }
-
-        alphabets.Sort();
-
-        Console.WriteLine("Alphabets after sorting");
-        foreach (string alphabet in alphabets)
-        {
-            Console.WriteLine(alphabet);
-        }
-
-        alphabets.Reverse();
-
-        Console.WriteLine("Alpabets in descending order");
-        foreach (string alphabet in alphabets)
-        {
-            Console.WriteLine(alphabet);
-        }
-
         Customer customer1 = new Customer()
         {
             ID = 101,
-            Name = "Zark",
-            Salary = 234000
+            Name = "Mark",
+            Salary = 4000
         };
 
         Customer customer2 = new Customer()
         {
-            ID = 102,
-            Name = "Aam",
+            ID = 103,
+            Name = "John",
             Salary = 7000
         };
 
         Customer customer3 = new Customer()
         {
-            ID = 103,
-            Name = "Rob",
+            ID = 102,
+            Name = "Ken",
             Salary = 5500
         };
 
-        List<Customer> listCustomers = new List<Customer>();
-        listCustomers.Add(customer1);
-        listCustomers.Add(customer2);
-        listCustomers.Add(customer3);
+        List<Customer> listCutomers = new List<Customer>();
+        listCutomers.Add(customer1);
+        listCutomers.Add(customer2);
+        listCutomers.Add(customer3);
 
         Console.WriteLine("Customers before sorting");
-        foreach (Customer customer in listCustomers)
+        foreach (Customer customer in listCutomers)
         {
-            Console.WriteLine(customer.Name);
-        }
-        // workig fine now
-        listCustomers.Sort();
-
-        Console.WriteLine("Customers after sorting");
-        foreach (Customer customer in listCustomers)
-        {
-            Console.WriteLine(customer.Name);
+            Console.WriteLine(customer.ID);
         }
 
-        sortBySalary s1 = new sortBySalary();
-        listCustomers.Sort(s1);
+        // Approach 1
+        // Step 2: Create an instance of Comparison delegate
+        //Comparison<Customer> customerComparer = 
+        //    new Comparison<Customer>(CompareCustomers);
 
+        // Step 3: Pass the delegate instance to the Sort method
+        //listCutomers.Sort(customerComparer);
 
-        Console.WriteLine("Customers after sorting");
-        foreach (Customer customer in listCustomers)
+        // Approach 2: Using delegate keyword
+        //listCutomers.Sort(delegate(Customer c1, Customer c2)
+        //{
+        //    return (c1.ID.CompareTo(c2.ID));
+        //});
+
+        // Aaproach 3: Using lambda expression
+        listCutomers.Sort((x, y) => x.ID.CompareTo(y.ID));
+
+        Console.WriteLine("Customers after sorting by ID");
+        foreach (Customer customer in listCutomers)
         {
-            Console.WriteLine(customer.Salary);
+            Console.WriteLine(customer.ID);
         }
-        //sortBySalary s1 = new sortBySalary();
-        listCustomers.Sort((x, y) => x.Salary.CompareTo(y.Salary));
+
+        listCutomers.Reverse();
+        Console.WriteLine("Customers in descending order of ID");
+        foreach (Customer customer in listCutomers)
+        {
+            Console.WriteLine(customer.ID);
+        }
     }
-}
 
-public class sortBySalary : IComparer<Customer>
-{
-
-    public int Compare(Customer x, Customer y)
+    // Approach 1 - Step 1
+    // Method that contains the logic to compare customers
+    private static int CompareCustomers(Customer c1, Customer c2)
     {
-        return x.Salary.CompareTo(y.Salary);
+        return c1.ID.CompareTo(c2.ID);
     }
 }
 
-public class Customer : IComparable<Customer>
+public class Customer
 {
     public int ID { get; set; }
     public string Name { get; set; }
     public int Salary { get; set; }
-
-    public int CompareTo(Customer other)
-    {
-        return this.Name.CompareTo(other.Name); // int implements compare to so we can use it.
-    }
 }
-
-// Now suppose at some palce I want the sorting to be done in a different way then what can be done.
-
