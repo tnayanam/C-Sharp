@@ -104,7 +104,8 @@ public class Program
         {
             Console.WriteLine(customer.Salary);
         }
-
+        //sortBySalary s1 = new sortBySalary();
+        listCustomers.Sort((x, y) => x.Salary.CompareTo(y.Salary));
     }
 }
 
