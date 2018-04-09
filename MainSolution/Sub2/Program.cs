@@ -59,13 +59,13 @@ public class Program
         {
             ID = 101,
             Name = "Zark",
-            Salary = 4000
+            Salary = 234000
         };
 
         Customer customer2 = new Customer()
         {
             ID = 102,
-            Name = "Mam",
+            Name = "Aam",
             Salary = 7000
         };
 
@@ -94,6 +94,26 @@ public class Program
         {
             Console.WriteLine(customer.Name);
         }
+
+        sortBySalary s1 = new sortBySalary();
+        listCustomers.Sort(s1);
+
+
+        Console.WriteLine("Customers after sorting");
+        foreach (Customer customer in listCustomers)
+        {
+            Console.WriteLine(customer.Salary);
+        }
+
+    }
+}
+
+public class sortBySalary : IComparer<Customer>
+{
+
+    public int Compare(Customer x, Customer y)
+    {
+        return x.Salary.CompareTo(y.Salary);
     }
 }
 
@@ -108,3 +128,6 @@ public class Customer : IComparable<Customer>
         return this.Name.CompareTo(other.Name); // int implements compare to so we can use it.
     }
 }
+
+// Now suppose at some palce I want the sorting to be done in a different way then what can be done.
+
