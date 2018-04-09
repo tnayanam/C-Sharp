@@ -1,4 +1,15 @@
-﻿public class Program
+﻿using System;
+using System.Collections.Generic;
+//TrueForAll() - Returns true or false depending on whether if every element in the list matches the conditions defined by the specified predicate.
+
+//2. AsReadOnly() - Returns a read-only wrapper for the current collection.Use this method, if you don't want the client code to modify the collection i.e add or remove any elements from the collection. The ReadOnlyCollection will not have methods to add or remove items from the collection. You can only read items from this collection.
+
+//3. TrimExcess() - Sets the capacity to the actual number of elements in the List, if that number is less than a threshold value. 
+
+
+
+
+public class Program
 {
     public static void Main()
     {
@@ -6,7 +17,7 @@
         {
             ID = 101,
             Name = "Mark",
-            Salary = 4000
+            Salary = 5200
         };
 
         Customer customer2 = new Customer()
@@ -23,53 +34,30 @@
             Salary = 5500
         };
 
-        List<Customer> listCutomers = new List<Customer>();
+        List<Customer> listCutomers = new List<Customer>(100);
         listCutomers.Add(customer1);
         listCutomers.Add(customer2);
         listCutomers.Add(customer3);
 
-        Console.WriteLine("Customers before sorting");
-        foreach (Customer customer in listCutomers)
-        {
-            Console.WriteLine(customer.ID);
-        }
+        Console.WriteLine("Are all salaries greater than 5000: "
+            + listCutomers.TrueForAll(x => x.Salary > 5000));
 
-        // Approach 1
-        // Step 2: Create an instance of Comparison delegate
-        //Comparison<Customer> customerComparer = 
-        //    new Comparison<Customer>(CompareCustomers);
+        // ReadOnlyCollection will not have Add() or Remove() methods
+        System.Collections.ObjectModel.ReadOnlyCollection<Customer>
+            readOnlyCustomers = listCutomers.AsReadOnly();
 
-        // Step 3: Pass the delegate instance to the Sort method
-        //listCutomers.Sort(customerComparer);
+        Console.WriteLine("Total Items in ReadOnlyCollection = " +
+            readOnlyCustomers.Count);
 
-        // Approach 2: Using delegate keyword
-        //listCutomers.Sort(delegate(Customer c1, Customer c2)
-        //{
-        //    return (c1.ID.CompareTo(c2.ID));
-        //});
-
-        // Aaproach 3: Using lambda expression
-        listCutomers.Sort((x, y) => x.ID.CompareTo(y.ID));
-
-        Console.WriteLine("Customers after sorting by ID");
-        foreach (Customer customer in listCutomers)
-        {
-            Console.WriteLine(customer.ID);
-        }
-
-        listCutomers.Reverse();
-        Console.WriteLine("Customers in descending order of ID");
-        foreach (Customer customer in listCutomers)
-        {
-            Console.WriteLine(customer.ID);
-        }
-    }
-
-    // Approach 1 - Step 1
-    // Method that contains the logic to compare customers
-    private static int CompareCustomers(Customer c1, Customer c2)
-    {
-        return c1.ID.CompareTo(c2.ID);
+        // listCutomers list is created with an initial capacity of 100
+        // but only 3 items are in the list. The filled percentage is 
+        // less than 90 percent threshold.
+        Console.WriteLine("List capacity before invoking TrimExcess = " +
+                listCutomers.Capacity);
+        // Invoke TrimExcess() to set the capacity to the actual 
+        // number of elements in the List
+        listCutomers.TrimExcess();
+        Console.WriteLine(listCutomers.Capacity);
     }
 }
 
