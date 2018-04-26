@@ -4,3 +4,9 @@ C:\Users\lenovo\Desktop\demo\CShrp\MainSolution\MainSolution\bin\Debug\MainSolut
 C:\Users\lenovo\Desktop\demo\CShrp\MainSolution\MainSolution\obj\Debug\MainSolution.exe
 C:\Users\lenovo\Desktop\demo\CShrp\MainSolution\MainSolution\obj\Debug\MainSolution.pdb
 C:\Users\lenovo\Desktop\demo\CShrp\MainSolution\MainSolution\obj\Debug\MainSolution.csprojResolveAssemblyReference.cache
+C:\Users\Dev-10\Desktop\Demo\CS\C-Sharp\MainSolution\MainSolution\bin\Debug\MainSolution.exe.config
+C:\Users\Dev-10\Desktop\Demo\CS\C-Sharp\MainSolution\MainSolution\obj\Debug\MainSolution.csprojResolveAssemblyReference.cache
+C:\Users\Dev-10\Desktop\Demo\CS\C-Sharp\MainSolution\MainSolution\bin\Debug\MainSolution.exe
+C:\Users\Dev-10\Desktop\Demo\CS\C-Sharp\MainSolution\MainSolution\bin\Debug\MainSolution.pdb
+C:\Users\Dev-10\Desktop\Demo\CS\C-Sharp\MainSolution\MainSolution\obj\Debug\MainSolution.exe
+C:\Users\Dev-10\Desktop\Demo\CS\C-Sharp\MainSolution\MainSolution\obj\Debug\MainSolution.pdb

@@ -1,12 +1,18 @@
-﻿namespace MainSolution
+﻿using System;
+namespace MainSolution
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Customer c1 = new Customer();
-            c1.Hello();
-            c1.World();
+            string s1 = "2";
+            string s2 = "t";
+
+            int temp1 = Int32.Parse(s1); // it converts integer to exact integer output - 2 but if string cannot be converted to integer it throws exception
+            Console.WriteLine(temp1);
+            int temp2;
+            Console.WriteLine(Int32.TryParse(s2, out temp2)); // output = false
+            Console.WriteLine(temp2); // no exception is raised only default value of interger is saved.
         }
     }
 }
