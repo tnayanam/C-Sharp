@@ -13,6 +13,9 @@ namespace MainSolution
             int temp2;
             Console.WriteLine(Int32.TryParse(s2, out temp2)); // output = false
             Console.WriteLine(temp2); // no exception is raised only default value of interger is saved.
+            string str = "1d2";
+            string[] temparr = str.Split('d'); // temparr[0] = 1 and temp[1] = 2 => string array
+            string[] temparr1 = str.Split('r'); // temparr1[0] since no split can be done it returns the entire string  
         }
     }
 }
