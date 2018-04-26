@@ -16,6 +16,11 @@ namespace MainSolution
             string str = "1d2";
             string[] temparr = str.Split('d'); // temparr[0] = 1 and temp[1] = 2 => string array
             string[] temparr1 = str.Split('r'); // temparr1[0] since no split can be done it returns the entire string  
+
+            Random r = new Random();
+
+            Console.WriteLine(r.Next(2,10));
+            Console.WriteLine(r.Next(2, 10));
         }
     }
 }
