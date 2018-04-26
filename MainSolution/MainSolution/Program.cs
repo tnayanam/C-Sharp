@@ -7,7 +7,6 @@ namespace MainSolution
         {
             string s1 = "2";
             string s2 = "t";
-
             int temp1 = Int32.Parse(s1); // it converts integer to exact integer output - 2 but if string cannot be converted to integer it throws exception
             Console.WriteLine(temp1);
             int temp2;
@@ -16,11 +15,14 @@ namespace MainSolution
             string str = "1d2";
             string[] temparr = str.Split('d'); // temparr[0] = 1 and temp[1] = 2 => string array
             string[] temparr1 = str.Split('r'); // temparr1[0] since no split can be done it returns the entire string  
-
             Random r = new Random();
-
             Console.WriteLine(r.Next(2,10));
             Console.WriteLine(r.Next(2, 10));
+
+            string s= "  sd f ";
+           string g = s.Trim();
+            Console.WriteLine(s); // output:"  sd f "
+            Console.WriteLine(g); // output:"sd f" // getting rid of front and end spaces
         }
     }
 }
