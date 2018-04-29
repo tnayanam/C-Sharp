@@ -1,41 +1,45 @@
-﻿using System;
+﻿using System.Collections.Generic;
 namespace MainSolution
 {
     class Program
     {
         static void Main(string[] args)
         {
-            string s1 = "2";
-            string s2 = "t";
-            int temp1 = Int32.Parse(s1); // it converts integer to exact integer output - 2 but if string cannot be converted to integer it throws exception
-            Console.WriteLine(temp1);
-            int temp2;
-            Console.WriteLine(Int32.TryParse(s2, out temp2)); // output = false
-            Console.WriteLine(temp2); // no exception is raised only default value of interger is saved.
-            string str = "1d2";
-            string[] temparr = str.Split('d'); // temparr[0] = 1 and temp[1] = 2 => string array
-            string[] temparr1 = str.Split('r'); // temparr1[0] since no split can be done it returns the entire string  
-            Random r = new Random();
-            Console.WriteLine(r.Next(2,10));
-            Console.WriteLine(r.Next(2, 10));
-
-            string s= "  sd f ";
-           string g = s.Trim();
-            Console.WriteLine(s); // output:"  sd f "
-            Console.WriteLine(g); // output:"sd f" // getting rid of front and end spaces
+            Stack<int> S1 = new Stack<int>();
+            S1.Push(23);
+            S1.Push(3);
+            S1.Push(18);
+            S1.Push(30);
+            // loop but no popping or peeking
+            foreach (var item in S1)
+            {
+                System.Console.WriteLine(item);
+            }
+            System.Console.WriteLine("---------");
+            System.Console.WriteLine(S1.Count);
+            while (S1.Count > 0)
+            {
+                System.Console.WriteLine(S1.Peek()); // Displays all elements
+                System.Console.WriteLine(S1.Pop()); // Print and pops out all elements
+            }
+            S1.Push(1);
+            S1.Push(2);
+            S1.Push(3);
+            S1.Push(4);
+            System.Console.WriteLine("-------------------------------");
+            System.Console.WriteLine(S1.Count);
+            S1.Clear(); // deletes all elements
+            System.Console.WriteLine("=================================");
+            System.Console.WriteLine(S1.Count); // count the elements in stack
+            int[] arr = new int[] { 1, 2, 3, 4, 5, 6 };
+            Stack<int> s2 = new Stack<int>(arr); // all elements assigned
+            while (s2.Count > 0)
+            {
+                System.Console.WriteLine(s2.Peek()); // Displays all elements
+                System.Console.WriteLine(s2.Pop()); // Displays all elements
+            }
+            Stack<int> s3 = new Stack<int>(new int[] { 1, 2, 3, 4 }); // all elements assigned
+            System.Console.WriteLine(s3.Contains(3));
         }
     }
 }
-/*
- * visual studio uses partial classes to s`eperate automatically generated designer code from
- * developer code.
- * During run time these partial classes combine into one file.
- * 
- * All parts spread across different files, must use the keyword "partial" keyword.
- * all the partials for a class must have same access modifiers
- * if any of the paritals is set to abstract then all the partials for that class gets abstract
- * different part of partial class cannot put different base class because
- * c# does not suport multiple class inheritance.
- * Any member that are declared in the partial is available in other parial too
- * 
- */
