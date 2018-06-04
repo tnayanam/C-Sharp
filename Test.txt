@@ -1,1 +1,22 @@
 A namespace is used to organize classes, other namespaces, delegates, interfaces. etc. hello
+By default, LINQ is deferred execution
+
+Deferred Execution: Query is not executed at the point of declaration
+	Example: Select, SelectMany, Take, Skip
+Immediate Execution: Query is executed at the point of declaration
+	Example: First, Last, SingleToList, ToArray
+	
+	Benefits: Query construction and execution is decoupled, thus we can decouple them.
+			  A deferred execution query is reevaluated whtn ran thus it alwasy gets the latest data.	
+			  Performance Kill is the down point.
+			  
+Example
+DataContext context = new DataContext();
+var query = from customer in context.Customers
+ where customer.City == "Delhi"
+ select customer; // Query does not execute here
+ 
+ foreach (var Customer in query) // Query executes here
+ {
+ Console.WriteLine(Customer.Name);
+ }
