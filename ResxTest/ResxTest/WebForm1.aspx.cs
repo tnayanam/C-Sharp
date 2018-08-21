@@ -20,7 +20,7 @@ namespace ResxTest
 
             if (Session["Lang"] == null)
             {
-                Session["Lang"] = Request.UserLanguages[0];
+                Session["Lang"] = Request.UserLanguages[0]; // if nothing is set lets set the system default culture.
             }
 
             if (!IsPostBack)
@@ -31,11 +31,11 @@ namespace ResxTest
 
         private void LoadString()
         {
-            Thread.CurrentThread.CurrentCulture = new CultureInfo(Session["Lang"].ToString());
-            rm = new ResourceManager("ResxTest.App_GlobalResources.Lang", Assembly.GetExecutingAssembly());
-            ci = Thread.CurrentThread.CurrentCulture;
+            Thread.CurrentThread.CurrentCulture = new CultureInfo(Session["Lang"].ToString()); // to the current thread lets set the culture provided by user dropdown
+            rm = new ResourceManager("ResxTest.App_GlobalResources.Lang", Assembly.GetExecutingAssembly()); // Add the resources to the executing assemblies so that they are included in the project
+            ci = Thread.CurrentThread.CurrentCulture; // get the culture the user is in.
 
-            lblName.Text = rm.GetString("Name", ci);
+            lblName.Text = rm.GetString("Name", ci); // now fetch the values
             lblAddress.Text = rm.GetString("Address", ci);
             lblState.Text = rm.GetString("State", ci);
             lblCountry.Text = rm.GetString("Country", ci);
@@ -49,3 +49,5 @@ namespace ResxTest
         }
     }
 }
+// Link: http://www.dotnetawesome.com/2014/06/how-to-create-multilingual-application-aspnet.html
+// the resource file properties needs to be in "Embedded Resource".
