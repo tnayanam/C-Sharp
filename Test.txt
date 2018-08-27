@@ -47,5 +47,7 @@ msbuild HelloWorld.msbuild /target:HelloWOrld2
 So first create a file with name <filename>.rsp
 
 and now go to command prompt and type: msbuild HelloWorld.msbuild @<filenaeme>.rsp
+-- to run multiple targets all you need to do is 
+/target:HelloWorld2,HelloWorld1
 
 
