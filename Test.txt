@@ -20,3 +20,4 @@ var query = from customer in context.Customers
  {
  Console.WriteLine(Customer.Name);
  }
+//
