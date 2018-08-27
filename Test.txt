@@ -74,6 +74,10 @@ here output is
   emo\C-Sharp\Test.txt
 
 all the text files.
+Running multiple targets:
+
+Now dependency betwwen targets
+
 
 
 
