@@ -41,5 +41,7 @@ msbuild HelloWorld.msbuild /target:HelloWOrld2  so now despite the target one sh
 7. Default targets: setting this makes that target to be executed as default
 <Project DefaultTargets="HelloWorld2" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 setting like above and running msbuild <filename>.msbuild will run the deafult target.
+8. but even after settign default target you want to oeverwrite it then you will use again the same command as
+msbuild HelloWorld.msbuild /target:HelloWOrld2
 
 
