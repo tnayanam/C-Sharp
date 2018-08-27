@@ -33,3 +33,9 @@ Various Tags to be used in the file:
 1. Project Name= Just a namespace
 2. Target -> Container for Set of instructions.
 3. Message -> if we want to display some message when file builds. for output
+4. We can have multiple targets but by default the first target always gets hit.
+5. So in our example we will see output of target HelloWOrld1 only.
+6. But suppose we want to see the output of second appearing target, then in that case use velow:
+msbuild HelloWorld.msbuild /target:HelloWOrld2  so now despite the target one should be invoked now its getting overidden.
+
+
