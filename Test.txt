@@ -21,6 +21,7 @@ var query = from customer in context.Customers
  Console.WriteLine(Customer.Name);
  }
 //
+https://app.pluralsight.com/player?course=msbuild&author=david-starr&name=msbuild-1&clip=5&mode=live
 
 // MS-Build: 
 It is a tool that is used by VS to compile and build the solution.
@@ -37,5 +38,8 @@ Various Tags to be used in the file:
 5. So in our example we will see output of target HelloWOrld1 only.
 6. But suppose we want to see the output of second appearing target, then in that case use velow:
 msbuild HelloWorld.msbuild /target:HelloWOrld2  so now despite the target one should be invoked now its getting overidden.
+7. Default targets: setting this makes that target to be executed as default
+<Project DefaultTargets="HelloWorld2" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+setting like above and running msbuild <filename>.msbuild will run the deafult target.
 
 
