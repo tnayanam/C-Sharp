@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
-  <Target Name="TargetA" DependsOnTargets="TargetB">
+  <Target Name="TargetA" DependsOnTargets="TargetC">
     <Message Text="This is target A"></Message>
   </Target>
 
-  <Target Name="TargetB">
+  <Target Name="TargetB" DependsOnTargets="TargetC">
     <Message Text="This is target B"></Message>
 
   </Target>
