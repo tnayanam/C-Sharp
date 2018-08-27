@@ -21,3 +21,15 @@ var query = from customer in context.Customers
  Console.WriteLine(Customer.Name);
  }
 //
+
+// MS-Build: 
+It is a tool that is used by VS to compile and build the solution.
+It reads the XML files.
+In order to create a msbuild file.
+open VS create a new file with extension .msbuild
+and open VS Command Prompt: and go to that file location and type msbuild <filename>.msbuild
+and it will build.
+Various Tags to be used in the file:
+1. Project Name= Just a namespace
+2. Target -> Container for Set of instructions.
+3. Message -> if we want to display some message when file builds. for output
