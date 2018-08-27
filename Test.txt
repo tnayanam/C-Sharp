@@ -49,5 +49,9 @@ So first create a file with name <filename>.rsp
 and now go to command prompt and type: msbuild HelloWorld.msbuild @<filenaeme>.rsp
 -- to run multiple targets all you need to do is 
 /target:HelloWorld2,HelloWorld1
+-- for debugging purpose sometimes you want to know alot more. so add this command in .rsp file 
+/v:detailed     => verbosity as DETAILED!!
+this wil provide more info in the console and help in debugging.
+
 
 
