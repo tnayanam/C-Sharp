@@ -43,5 +43,9 @@ msbuild HelloWorld.msbuild /target:HelloWOrld2  so now despite the target one sh
 setting like above and running msbuild <filename>.msbuild will run the deafult target.
 8. but even after settign default target you want to oeverwrite it then you will use again the same command as
 msbuild HelloWorld.msbuild /target:HelloWOrld2
+9. So now suppose we dont want to type command line command to go to a particular target we can create another file to do so
+So first create a file with name <filename>.rsp
+
+and now go to command prompt and type: msbuild HelloWorld.msbuild @<filenaeme>.rsp
 
 
