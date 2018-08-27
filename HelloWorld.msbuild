@@ -1,5 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Name>Tanuj</Name>
+    <FullName>Tanuj Nayanam</FullName>
+  </PropertyGroup>
   <Target Name="HelloWorld1">
     <Message Text="Hello World is getting executed - part 1">
       
@@ -7,7 +11,7 @@
   </Target>
 
   <Target Name="HelloWorld2">
-    <Message Text="Hello World is getting executed - part 2">
+    <Message Text="Hello, $(Name)! Full Name: $(FullName)">
 
     </Message>
   </Target>

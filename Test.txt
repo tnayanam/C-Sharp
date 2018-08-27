@@ -53,5 +53,9 @@ and now go to command prompt and type: msbuild HelloWorld.msbuild @<filenaeme>.r
 /v:detailed     => verbosity as DETAILED!!
 this wil provide more info in the console and help in debugging.
 
+Now Variabls, they are stored under property group tag
+
+OUTPUT: Hello, Tanuj! Full Name: Tanuj Nayanam
+
 
 
