@@ -4,6 +4,10 @@
     <Name>Tanuj</Name>
     <FullName>$(Name) Nayanam</FullName>
   </PropertyGroup>
+
+  <Target Name="ReserverProp">
+    <Message Text="MSBuildProjectDirectory : $(MSBuildProjectDirectory)"/>
+  </Target>
   <Target Name="HelloWorld1">
     <Message Text="Hello World is getting executed - part 1">
       

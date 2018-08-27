@@ -57,5 +57,16 @@ Now Variabls, they are stored under property group tag
 
 OUTPUT: Hello, Tanuj! Full Name: Tanuj Nayanam
 
+Now you can even pass the varibale from command prompt like below:
+msbuild HelloWorld.msbuild @blah.rsp /p:Name=Lisa
+
+Now the output will be:
+Hello, Lisa! Full Name: Lisa Nayanam
+
+See the reserved property.
+Output:  MSBuildProjectDirectory : C:\Users\tnayanam\Desktop\Demo\C-Sharp
+
+
+
 
 
