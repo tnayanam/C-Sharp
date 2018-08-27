@@ -2,7 +2,7 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Name>Tanuj</Name>
-    <FullName>Tanuj Nayanam</FullName>
+    <FullName>$(Name) Nayanam</FullName>
   </PropertyGroup>
   <Target Name="HelloWorld1">
     <Message Text="Hello World is getting executed - part 1">
