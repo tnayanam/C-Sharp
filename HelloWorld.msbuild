@@ -1,12 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Target Name="TargetA" BeforeTargets="TargetC">
+  <Target Name="TargetA" DependsOnTargets="TargetC">
     <Message Text="This is target A"></Message>
   </Target>
-  <Target Name="TargetB" AfterTargets="TargetC">
+  <Target Name="TargetB">
     <Message Text="This is target B"></Message>
   </Target>
   <Target Name="TargetC">
     <Message Text="This is target C"></Message>
+  </Target>
+  <Target Name="BuildSolution">
+    <MSBuild Projects="$(SolutionFIleName)" Properties="Configuration=Release;Output=$(outputpath)">
+      
+    </MSBuild>
   </Target>
 </Project>

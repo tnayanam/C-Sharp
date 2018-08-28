@@ -108,6 +108,11 @@ TargetC:
 TargetB:
   This is target B
 
+"Import" tag helps in bringing in other scripts xml file and can be used then.
+Invoke MSBuild form another MSBUild, it helps in building some other projects
+
+
+
 
 
 
