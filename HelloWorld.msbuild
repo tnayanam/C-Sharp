@@ -11,7 +11,6 @@
   </Target>
   <Target Name="BuildSolution">
     <MSBuild Projects="$(SolutionFIleName)" Properties="Configuration=Release;Output=$(outputpath)">
-      
     </MSBuild>
   </Target>
 </Project>
