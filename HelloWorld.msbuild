@@ -1,20 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-
-  <Target Name="TargetA" DependsOnTargets="TargetC">
+  <Target Name="TargetA" BeforeTargets="TargetC">
     <Message Text="This is target A"></Message>
   </Target>
-
-  <Target Name="TargetB" DependsOnTargets="TargetC">
+  <Target Name="TargetB" AfterTargets="TargetC">
     <Message Text="This is target B"></Message>
-
   </Target>
-
-
   <Target Name="TargetC">
     <Message Text="This is target C"></Message>
-
   </Target>
-  
-  
 </Project>

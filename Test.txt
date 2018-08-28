@@ -80,8 +80,33 @@ Now dependency betwwen targets
 target b will execute first
 
 Depends on target will be executed just once for C. It will not be executed for A and B both. SMART
+Depends on target means the depends on will execute and then the actual target will get executed.
+So in here you can see that Target A was called but targetc will get eecuted first.
+TargetC:
+  This is target C
+TargetA:
+  This is target A
+================
+Now After targets is different from DependsOnTarget
+So if you run again (as default target is A) you can see below output:
+TargetA:
+  This is target A
+but now if you if you run target c: then it will check is c somewhere mentioned in aftertarget which is A. so after C a will run
+output
+TargetC:
+  This is target C
+TargetA:
+  This is target A
 
+Now the order of operation would be IF WE CALL tARGET c THEN
+Taregt a. Target c, target b
 
+TargetA:
+  This is target A
+TargetC:
+  This is target C
+TargetB:
+  This is target B
 
 
 
