@@ -111,6 +111,12 @@ TargetB:
 "Import" tag helps in bringing in other scripts xml file and can be used then.
 Invoke MSBuild form another MSBUild, it helps in building some other projects
 
+Okey so if you want to build another exe and run it form main solution you need to do below in the parent project
+     <Target Name="AfterBuild">
+    <!-- <MsBuild Projects="$(ProjectToBuildPath)" /> --> // this creates the exe 
+    <!-- <Exec Command="C:\Users\tnayanam\Desktop\Demo\WebApi\CallAPI\CallAPI\CallAPI\bin\Debug\CallAPI.exe"/> --> // this runs the exe
+	</Target>
+
 
 
 
