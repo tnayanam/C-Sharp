@@ -100,4 +100,52 @@ You use Task as the return type if the method has no return statement or has a r
 
     return View("PWG", pwgVM);
 }
+
+    A better slogan is async all the way up. Because you start with an asynchronous operation and make its caller asynchronous and then the next caller etc.
+
+You should use async-await when you have an inherently asynchronous operation (usually I/O but not necessarily) and you don't want to waste a thread idly waiting for the operation to complete. Choosing an async operation instead of a synchronous one doesn't speed up the operation. It will take the same amount of time (or even more). It just enables that thread to continue executing some other CPU bound work instead of wasting resources.
+
+But to be able to await that operation the method needs to be an async one and the caller needs to await it and so forth and so forth.
+
+So async all the way up enables you to actually make an asynchronous call and release any threads. If it isn't async all the way then some thread is being blocked.
+
+So, this:
+
+async Task FooAsync()
+{
+    await Func1();
+    // do other stuff
+}
+
+async Task Func1()
+{
+    await Func2();
+    // do other stuff
+}
+
+async Task Func2()
+{
+    await tcpClient.SendAsync();
+    // do other stuff
+}
+Is better than this:
+
+void Foo()
+{
+    Func1();
+    // do other stuff
+}
+
+void Func1()
+{
+    Func2().Wait();  // Synchronously blocking a thread.
+    // do other stuff
+}
+
+async Task Func2()
+{
+    await tcpClient.SendAsync();
+    // do other stuff
+}
+
  */
