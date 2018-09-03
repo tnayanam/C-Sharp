@@ -74,4 +74,30 @@ namespace ConsoleApplication1
 You specify Task<TResult> as the return type if the method contains a return statement that specifies an operand of type TResult.
 
 You use Task as the return type if the method has no return statement or has a return statement that doesn't return an operand.
+
+    // In a way, asynchronous methods behave contagiously. To call an asynchronous method with await, you must make the calling method
+    asynchronous as well, even if it was not async before. Now, all methods calling this newly asynchronous method must also become
+    asynchronous. This pattern repeats itself up the call stack until it finally reaches the entry points, e.g. event handlers.
+    // When multiple await operations need to be awaited
+    public async Task<ActionResult> PWGasync()
+{
+    ViewBag.SyncType = "Asynchronous";
+    var widgetService = new WidgetService();
+    var prodService = new ProductService();
+    var gizmoService = new GizmoService();
+
+    var widgetTask = widgetService.GetWidgetsAsync();
+    var prodTask = prodService.GetProductsAsync();
+    var gizmoTask = gizmoService.GetGizmosAsync();
+
+    await Task.WhenAll(widgetTask, prodTask, gizmoTask);
+
+    var pwgVM = new ProdGizWidgetVM(
+       widgetTask.Result,
+       prodTask.Result,
+       gizmoTask.Result
+       );
+
+    return View("PWG", pwgVM);
+}
  */
