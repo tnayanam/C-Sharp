@@ -335,8 +335,7 @@ GetJsonAsync awaits the Task returned by GetStringAsync. The context is captured
   
   the best way to prevent these kinds of deadlocks:
   
-
-  public async void Button1_Click(...)
+public async void Button1_Click(...)
 {
   var json = await GetJsonAsync(...);
   textBox1.Text = json;
@@ -350,11 +349,32 @@ public class MyController : ApiController
     return json.ToString();
   }
 }
-  
-  
-  
- 
- 
+
+
+
+Async void methods have different error-handling semantics. When an exception is thrown out of an async Task or async 
+Task<T> method, that exception is captured and placed on the Task object. With async void methods, there is no Task object, 
+so any exceptions thrown out of an async void method will be raised directly on the SynchronizationContext that was active when 
+the async void method started. 
+
+private async void ThrowExceptionAsync()
+{
+  throw new InvalidOperationException();
+}
+public void AsyncVoidExceptions_CannotBeCaughtByCatch()
+{
+  try
+  {
+    ThrowExceptionAsync();
+  }
+  catch (Exception)
+  {
+    // The exception is never caught here!
+    throw;
+  }
+}
+
+
 
 
  */
