@@ -236,6 +236,43 @@ The important thing to note with this example is that each “level” of async 
 
 A good rule of thumb is to use ConfigureAwait(false) unless you know you do need the context.
 
+Async Composition
+So far, we’ve only considered serial composition: an async method waits for one operation at a time. It’s also possible to start several operations and await for one (or all) of them to complete. You can do this by starting the operations but not awaiting them until later:
 
+public async Task DoOperationsConcurrentlyAsync()
+{
+  Task[] tasks = new Task[3];
+  tasks[0] = DoOperation0Async();
+  tasks[1] = DoOperation1Async();
+  tasks[2] = DoOperation2Async();
+
+  // At this point, all three tasks are running at the same time.
+
+  // Now, we await them all.
+  await Task.WhenAll(tasks);
+}
+
+public async Task<int> GetFirstToRespondAsync()
+{
+  // Call two web services; take the first response.
+  Task<int>[] tasks = new[] { WebService1Async(), WebService2Async() };
+
+  // Await for the first one to respond.
+  Task<int> firstTask = await Task.WhenAny(tasks);
+
+  // Return the result.
+  return await firstTask;
+}
+By using concurrent composition (Task.WhenAll or Task.WhenAny), you can perform simple concurrent operations. You can also use these methods
+ along with Task.Run to do simple parallel computation. 
+However, this is not a substitute for the Task Parallel Library - any advanced CPU-intensive parallel operations should be done with the TPL.
+
+Old	New	Description
+task.Wait	await task	Wait/await for a task to complete
+task.Result	await task	Get the result of a completed task
+Task.WaitAny	await Task.WhenAny	Wait/await for one of a collection of tasks to complete
+Task.WaitAll	await Task.WhenAll	Wait/await for every one of a collection of tasks to complete
+Thread.Sleep	await Task.Delay	Wait/await for a period of time
+Task constructor	Task.Run or TaskFactory.StartNew	Create a code-based task
 
  */
