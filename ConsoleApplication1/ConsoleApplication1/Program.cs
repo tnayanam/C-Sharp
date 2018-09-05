@@ -163,4 +163,22 @@ public async Task<HomeIndexModel> GetDataForIndexScreen()
     model.News2 = ParseRssInternal(results[1]);
     return model;
 } 
+
+TO summarize the first guideline you should always prefer async task to async void.
+async task methods enable easier error-handling, compasability and testability.
+the exception to this is asynchronous event heandler, which must return void. 
+
+Async Way of doing things
+
+To Do This …	Instead of This …	Use This
+Retrieve the result of a background task	Task.Wait or Task.Result	await
+Wait for any task to complete           	Task.WaitAny	            await Task.WhenAny
+Retrieve the results of multiple tasks  	Task.WaitAll            	await Task.WhenAll
+Wait a period of time	                    Thread.Sleep	            await Task.Delay
+
+To summarize this second guideline, you should avoid mixing async and blocking code. Mixed async and blocking code can cause deadlocks, 
+more-complex error handling and unexpected blocking of context threads. The exception
+ to this guideline is the Main method for console applications, or—if you’re an advanced user—managing a partially asynchronous codebase.
+ If you use intellisence on task you will find two methods WaitAll and WhenAll, always use the WhenAll, as it keeps things asynchronous.
+
  */
