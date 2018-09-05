@@ -275,4 +275,22 @@ Task.WaitAll	await Task.WhenAll	Wait/await for every one of a collection of task
 Thread.Sleep	await Task.Delay	Wait/await for a period of time
 Task constructor	Task.Run or TaskFactory.StartNew	Create a code-based task
 
+
+// Actual syntax
+public async Task<int> GetValue()
+{
+  // Asynchronously retrieve two partial values.
+  // Note that these are *not* awaited at this time.
+  Task<int> part1 = GetValuePart1();
+  Task<int> part2 = GetValuePart2();
+
+  // Wait for both values to arrive.
+  await TaskEx.WhenAll(part1, part2);
+
+  // Calculate our result.
+  int value1 = await part1; // Does not actually wait.
+  int value2 = await part2; // Does not actually wait.
+  return value1 + value2;
+}
+
  */
