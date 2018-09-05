@@ -180,5 +180,62 @@ To summarize this second guideline, you should avoid mixing async and blocking c
 more-complex error handling and unexpected blocking of context threads. The exception
  to this guideline is the Main method for console applications, or—if you’re an advanced user—managing a partially asynchronous codebase.
  If you use intellisence on task you will find two methods WaitAll and WhenAll, always use the WhenAll, as it keeps things asynchronous.
+ 
+ 
+ One important point about awaitables is this: it is the type that is awaitable, not the method returning the type.
+ In other words, you can await the result of an async method that returns Task … because the method returns Task, not because it’s async. 
+ So you can also await the result of a non-async method that returns Task:
+
+public async Task NewStuffAsync()
+{
+  // Use await and have fun with the new stuff.
+  await ...
+}
+
+public Task MyOldTaskParallelLibraryCode() // no async method signature.
+{
+  // Note that this is not an async method, so we can't use await in here.
+  ...
+}
+
+public async Task ComposeAsync()
+{
+  // We can await Tasks, regardless of where they come from.
+  await NewStuffAsync();
+  await MyOldTaskParallelLibraryCode(); as the return type is Tasj it can be awaited. it does not have to be asyn method signature.
+}
+
+
+Avoiding Context
+Most of the time, you don’t need to sync back to the “main” context. Most async methods will be designed with composition in mind: they await other operations, and each one represents an asynchronous operation itself (which can be composed by others). In this case, you want to tell the awaiter to not capture the current context by calling ConfigureAwait and passing false, e.g.:
+
+private async Task DownloadFileAsync(string fileName)
+{
+  // Use HttpClient or whatever to download the file contents.
+  var fileContents = await DownloadFileContentsAsync(fileName).ConfigureAwait(false);
+
+  // Note that because of the ConfigureAwait(false), we are not on the original context here.
+  // Instead, we're running on the thread pool.
+
+  // Write the file contents out to a disk file.
+  await WriteToDiskAsync(fileName, fileContents).ConfigureAwait(false);
+
+  // The second call to ConfigureAwait(false) is not *required*, but it is Good Practice.
+}
+
+// WinForms example (it works exactly the same for WPF).
+private async void DownloadFileButton_Click(object sender, EventArgs e)
+{
+  // Since we asynchronously wait, the UI thread is not blocked by the file download.
+  await DownloadFileAsync(fileNameTextBox.Text);
+
+  // Since we resume on the UI context, we can directly access UI elements.
+  resultTextBox.Text = "File downloaded!";
+}
+The important thing to note with this example is that each “level” of async method calls has its own context. DownloadFileButton_Click started in the UI context, and called DownloadFileAsync. DownloadFileAsync also started in the UI context, but then stepped out of its context by calling ConfigureAwait(false). The rest of DownloadFileAsync runs in the thread pool context. However, when DownloadFileAsync completes and DownloadFileButton_Click resumes, it does resume in the UI context.
+
+A good rule of thumb is to use ConfigureAwait(false) unless you know you do need the context.
+
+
 
  */
