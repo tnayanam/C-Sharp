@@ -147,5 +147,20 @@ async Task Func2()
     await tcpClient.SendAsync();
     // do other stuff
 }
+// Multiple await in a program:
 
+public async Task<HomeIndexModel> GetDataForIndexScreen()
+{
+    var client = new HttpClient();
+    var step1 = client.GetStringAsync(...); 1st async operation
+    var step2 = client.GetStringAsync(...); 2nd async operation
+ 
+    // Assuming that return types from operations are HOMOGENEOUS
+    var results = await Task.WhenAll(step1, step2); await both, when both is compelted then only continue.
+ 
+    var model = new HomeIndexModel();
+    model.News1 = ParseRssInternal(results[0]);
+    model.News2 = ParseRssInternal(results[1]);
+    return model;
+} 
  */
