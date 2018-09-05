@@ -293,4 +293,68 @@ public async Task<int> GetValue()
   return value1 + value2;
 }
 
+Cause of Deadlock in Wrongly Written Asyn Await function:
+
+// My "library" method.
+public static async Task<JObject> GetJsonAsync(Uri uri)
+{
+  using (var client = new HttpClient())
+  {
+    var jsonString = await client.GetStringAsync(uri);
+    return JObject.Parse(jsonString);
+  }
+}
+
+// My "top-level" method.
+public class MyController : ApiController
+{
+  public string Get()
+  {
+    var jsonTask = GetJsonAsync(...);
+    return jsonTask.Result.ToString();
+  }
+}
+
+This code will cause the deadlock, Ok here is the reason.
+1. whenever an await task is found the method runs in a particular context.
+flow that happens in above example:
+
+The top-level method calls GetJsonAsync (ASP.NET context).
+GetJsonAsync starts the REST request by calling HttpClient.GetStringAsync (still within the context).
+GetStringAsync returns an uncompleted Task, indicating the REST request is not complete.
+GetJsonAsync awaits the Task returned by GetStringAsync. The context is captured and will be used to continue
+ running the GetJsonAsync method later. 
+ GetJsonAsync returns an uncompleted Task, indicating that the GetJsonAsync method is not complete.
+ The top-level method synchronously blocks on the Task returned by GetJsonAsync. This blocks the context thread.
+ Eventually, the REST request will complete. This completes the Task that was returned by GetStringAsync.
+  The continuation for GetJsonAsync is now ready to run, and it waits for the context to be available so it can execute in the context.
+  Deadlock. The top-level method is blocking the context thread, waiting for GetJsonAsync to complete, and GetJsonAsync is waiting for 
+  the context to be free so it can complete.
+  
+  Preventing this deadlock:
+  
+  the best way to prevent these kinds of deadlocks:
+  
+
+  public async void Button1_Click(...)
+{
+  var json = await GetJsonAsync(...);
+  textBox1.Text = json;
+}
+
+public class MyController : ApiController
+{
+  public async Task<string> Get()
+  {
+    var json = await GetJsonAsync(...);
+    return json.ToString();
+  }
+}
+  
+  
+  
+ 
+ 
+
+
  */
