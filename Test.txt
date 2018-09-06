@@ -116,6 +116,12 @@ Okey so if you want to build another exe and run it form main solution you need 
     <!-- <MsBuild Projects="$(ProjectToBuildPath)" /> --> // this creates the exe 
     <!-- <Exec Command="C:\Users\tnayanam\Desktop\Demo\WebApi\CallAPI\CallAPI\CallAPI\bin\Debug\CallAPI.exe"/> --> // this runs the exe
 	</Target>
+	
+	============================================================
+	TASK
+	============================================================
+	Task.WaitAll() -> This means the current thread will be blocked untill the execution finishes.
+	Task.WhenAll() -> Asynchronously , it returns method will continue when everything's completed but we wont tie up and thread to jsut hang around.
 
 
 
