@@ -139,6 +139,60 @@ Okey so if you want to build another exe and run it form main solution you need 
 			}
 		}
 	}
+	=======
+	task.whenany
+	=======
+	We use Task.WhenAny when we have a collection of tasks,	but we only interested in the first finished task. It can happen for example when we have couple
+	of async API that all of them do the same thing. But we want to receive the result from the one that return the result first.
+	
+	private static async Task<string> FirstRespondingUrlAsync(string urlA, string urlB)
+{
+  // Start both downloads concurrently.
+  Task<string> downloadTaskA = _httpClient.GetHtmlResponseAsync(urlA);
+  Task<string> downloadTaskB = _httpClient.GetHtmlResponseAsync(urlB);
+  
+  // Wait for either of the tasks to complete.
+  Task<string> completedTask = await Task.WhenAny(downloadTaskA, downloadTaskB);
+  
+  // Return the length of the data retrieved from that URL.
+  string data = await completedTask;
+  
+  return data;
+}
+
+It has await but it will act like synchronous
+static async void OrderAsync()
+{
+    var stopwatch = Stopwatch.StartNew();
+ 
+    await Task.Delay(3000)
+        .ContinueWith(task => ShowCompletion("Fries", stopwatch.Elapsed)); // this will not execute further
+    await Task.Delay(1000)
+        .ContinueWith(task => ShowCompletion("Drink", stopwatch.Elapsed));// once above is executed this will start and will not execute further
+    await Task.Delay(5000)
+        .ContinueWith(task => ShowCompletion("Burger", stopwatch.Elapsed)); // now once this is executed then only code will proceed further
+ // SO OVERALL THE CODE BECAME ASYNC.
+    ShowCompletion("Order", stopwatch.Elapsed);
+ 
+    stopwatch.Stop();
+}
+
+// Now make it run in parallel:
+static async void OrderAsync()
+{
+    var stopwatch = Stopwatch.StartNew();
+ 
+    var task1 =  Task.Delay(3000)
+        .ContinueWith(task => ShowCompletion("Fries", stopwatch.Elapsed)); // this will not execute further
+    var task2 = Task.Delay(1000)
+        .ContinueWith(task => ShowCompletion("Drink", stopwatch.Elapsed));// once above is executed this will start and will not execute further
+    var task3 = Task.Delay(5000)
+        .ContinueWith(task => ShowCompletion("Burger", stopwatch.Elapsed)); // now once this is executed then only code will proceed further
+    Await WhenAll(tastk1, task2, task3);
+    ShowCompletion("Order", stopwatch.Elapsed);
+ 
+    stopwatch.Stop();
+}
 
 
 
