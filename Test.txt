@@ -122,6 +122,23 @@ Okey so if you want to build another exe and run it form main solution you need 
 	============================================================
 	Task.WaitAll() -> This means the current thread will be blocked untill the execution finishes.
 	Task.WhenAll() -> Asynchronously , it returns method will continue when everything's completed but we wont tie up and thread to jsut hang around.
+	
+	static async void ExecuteTasks()
+	{
+		List<Task> tasks = new List<Task> {MethodA(), MethodB(), MethodC()};
+		Task result = Task.WhenAll(tasks);
+		try
+		{
+			await result;
+		}
+		catch(AggregateExcecption)
+		{
+			foreach(Ecception e in result.Exception.InnerExceptions)
+			{
+				Console.WriteLine(e.Message);
+			}
+		}
+	}
 
 
 
