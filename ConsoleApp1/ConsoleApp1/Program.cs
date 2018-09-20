@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace ConsoleApp1
 {
@@ -6,23 +7,24 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            var t = GetNumbersGreaterThan3(new List<int>()
+            foreach (var s in GetNumbersGreaterThan3(new List<int>()
             {
                 1, 2, 3, 4, 5
-            });
-        }
+            }))
+            {
+                Console.WriteLine(s);
+            }
+        }  // no intermediary storage is required.
+
         // custom iteration:
         // suppose we want to get all the numbers greater then 3
         public static IEnumerable<int> GetNumbersGreaterThan3(List<int> lst)
         {
-            var theNumbers = new List<int>();
             foreach (var i in lst)
             {
                 if (i > 3)
-                    theNumbers.Add(i);
+                    yield return i;
             }
-
-            return theNumbers;
         }
     }
 }
