@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ConsoleApp1
 {
@@ -8,19 +9,21 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            foreach (var l in GenerateWithoutYield())
+            foreach (var l in GenerateWithoutYield().Take(5))
             {
                 Console.WriteLine(l);
             }
         }
 
-        public static IEnumerable<int> GenerateWithoutYield() // in this case this method will get hit 5 times as the foreach in the main
-        //iterates.
+        public static IEnumerable<int> GenerateWithoutYield() // just in the first iteration of the loop breakpoint will get hit
+        // and we will get the entire list, and then we will loop through it in the "main" foreach loop.
+        // so this method gets called just once
         {
             var i = 0;
             var list = new List<int>();
-            while (i < 5)
-                yield return ++i;
+            while (true)
+                list.Add(++i); // here the loop will infintiely and we will never get the output
+            return list;
         }
     }
 }
