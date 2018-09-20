@@ -22,8 +22,13 @@ namespace ConsoleApp1
             var i = 0;
             var list = new List<int>();
             while (true)
-                list.Add(++i); // here the loop will infintiely and we will never get the output
-            return list;
+                yield return ++i; // here the loop will infintiely and we will never get the output
         }
     }
 }
+
+// Output: 1
+//2
+//3
+//4
+//5
