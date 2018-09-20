@@ -1,34 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 
 namespace ConsoleApp1
 {
-    // so every time yield is called GetNumbers() get hit and yield returns to the caller one by one and result is processed.
     class Program
     {
         static void Main(string[] args)
         {
-            foreach (var l in GenerateWithoutYield().Take(5))
+            var t = GetNumbersGreaterThan3(new List<int>()
             {
-                Console.WriteLine(l);
-            }
+                1, 2, 3, 4, 5
+            });
         }
-
-        public static IEnumerable<int> GenerateWithoutYield() // just in the first iteration of the loop breakpoint will get hit
-        // and we will get the entire list, and then we will loop through it in the "main" foreach loop.
-        // so this method gets called just once
+        // custom iteration:
+        // suppose we want to get all the numbers greater then 3
+        public static IEnumerable<int> GetNumbersGreaterThan3(List<int> lst)
         {
-            var i = 0;
-            var list = new List<int>();
-            while (true)
-                yield return ++i; // here the loop will infintiely and we will never get the output
+            var theNumbers = new List<int>();
+            foreach (var i in lst)
+            {
+                if (i > 3)
+                    theNumbers.Add(i);
+            }
+
+            return theNumbers;
         }
     }
 }
+// Disadvantage here:
+/*
+ * We have to create a temporary list to store the output "theNumbers"
+ *
+ */
 
-// Output: 1
-//2
-//3
-//4
-//5
