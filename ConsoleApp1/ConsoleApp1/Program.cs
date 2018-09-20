@@ -14,18 +14,13 @@ namespace ConsoleApp1
             }
         }
 
-        public static IEnumerable<int> GenerateWithoutYield() // just in the first iteration of the loop breakpoint will get hit
-        // and we will get the entire list, and then we will loop through it in the "main" foreach loop.
-        // so this method gets called just once
+        public static IEnumerable<int> GenerateWithoutYield() // in this case this method will get hit 5 times as the foreach in the main
+        //iterates.
         {
             var i = 0;
             var list = new List<int>();
             while (i < 5)
-            {
-                list.Add(++i);
-            }
-
-            return list;
+                yield return ++i;
         }
     }
 }
