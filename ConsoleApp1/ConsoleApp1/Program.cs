@@ -9,6 +9,11 @@ namespace ConsoleApp1
         static void Main(string[] args)
         {
 
+            string abc = "This is {firstName}";
+            Dictionary<string, object> dict = new Dictionary<string, object> { { "firstName", "Tetanus" } };
+
+            var t = dict.Aggregate(abc, (a, b) => a.Replace("{" + b.Key + "}", b.Value.ToString()));
+            Console.WriteLine(t);
             // LINQ Aggregate
             /*
              * The easiest-to-understand definition of Aggregate is that it performs an operation on each element of the list taking into account the operations that have gone before.
