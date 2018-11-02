@@ -1,0 +1,20 @@
+﻿How to add and use a class library
+1. first you will have a basic solution, in that you will have a project so now you want to add a class library to it and use it
+2. right click on the main solution and now you need to click on add project and add a class library this will create a dll.
+3. suppose the code in the library is like below
+
+namespace ClassLibrary1
+{
+    public class Class1
+    {
+        public int Add()
+        {
+            return 4;
+        }
+    }
+}
+
+class library that gets created is in the form of a dll
+
+so now in main solution you have two project one is dll and one is the actual project
+now go to the actual project and go to references and add the project references and now you should   be good.

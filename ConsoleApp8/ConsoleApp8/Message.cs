@@ -3,6 +3,6 @@
     public class Message
     {
         public string topic;
-        public string payload;
+        public string payload; //hello 
     }
 }
