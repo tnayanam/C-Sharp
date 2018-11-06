@@ -1,0 +1,71 @@
+How to create your own nugetpackage? .Net Framework Class Library
+Watch this video: https://www.youtube.com/watch?v=xPm9FsptuE8
+SO LINK: https://stackoverflow.com/questions/53144321/not-able-to-upload-a-nuget-package/53145074#53145074
+
+Step 1: Create a basic .Net Framework class library project. You need to name it uniquely, it should not conflict with already existing Nuget
+packages available online. Suppose we name solution as "Tanuj" and add a function there as "Add".
+Step 2: Now you want to submite thisproject to Nuget so you want to go to Assembly Info, Set some title, description, company, aseembly product,
+copyright.
+Step 3: When we publish the package, we want it to be in release mode, for that, right click on the project and unload it. And then again click there and go to open csproj file, and then change the Debug to Release and then reload the project
+Now all this it does is when we run nuget to create the package it will pick the release version for package creation.
+Step 4: Now we need to change the dropdown to release mode, and build the library.
+- Now open the project folder. You should be at the same location where you find the bin folder. Now go to nuget.org/downloads and save it at the same location where bin is.
+Step 5: now go to CMD to that eact location
+
+--      nuget spec NAMEOFCSPROJ file
+
+this will create a .nuspec file, open it n notepad++, all the info here with dollar sign is going to be pulled frmo .csroj file. out the other stuff which does not have dollar here, you can out tags also here. <tags>
+-- if you dont have project license and project url adn icon url better just delete them
+-- this is more like one time thing for a package, so next time a next verions is coming you dont need to create this file again
+-- now again to to release in the dropdnw and compile one more time.
+-- nuget pack
+-- this will generate the nuget package and its ready to push.
+
+Nuget account side of things.
+
+You need to create a nuget MS account, now go to your account settings, API KEY section. and generate the key, this key is never visible. So copy it and keep it somewhere. If you miss it you gonna have to regerenate the key
+now go to CMD and 
+-- nuget push NAMEOFNUGETPACKAGE APIKEY -Source https://api.nuget.org/v3/index.json
+
+Now this will push the library on live.
+
+Creating a new Version of same library.
+[assembly: AssemblyVersion("1.1.0.0")]
+[assembly: AssemblyFileVersion("1.1.0.0")]
+
+then do a nuget pack it will generate a nuget packge and then do a nuget push same as above.
+Also if you want to do a nuget pack via bat file. You can create a normal file with extension .bat
+and then type in it nuget pack
+and now every time you double click on it will generate the .nupckg file automatically. ++++
+Now suppose you want to make even publishing automatic. for that do below
+
+nuget push "%1" KEYOFAPI -Source https://api.nuget.org/v3/index.json
+
+Now save it. Now for this to work once you got ++++ this file ready jsut drag that file to this bat file and it will be all done. and pushed to the nuget server.
+
+============================================================
+How to test above bat file
+Just delete everything and type 
+echo %1
+ pause
+ 
+ now drag the ++++ to above bat file. and it should shw the complete path of ++++ file.
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
