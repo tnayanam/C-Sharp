@@ -20,3 +20,6 @@ namespace TestNinja.UnitTests
         }
     }
 }
+
+
+// to run the test click on test in VS top menu and then click on run and then "all tests"
