@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Runtime.InteropServices;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using TestNinja.Fundamentals;
 
 namespace TestNinja.UnitTests
 {
-    [TestClass]
+    [TestFixture]
     public class ReservationTests // Notice this convention. class tat we are trying to test followed by "tests"
     {
-        [TestMethod]
+        [Test]
         public void CanBeCancelledBy_AdminCancelling_ReturnsTrue() // convention methodname_scenariobeingtested_expectedoutcome
         {
             // Arrange
@@ -16,9 +16,11 @@ namespace TestNinja.UnitTests
             // Act
            var result =  reservation.CanBeCancelledBy(new User {IsAdmin = true});
             //Assert
-            Assert.IsTrue(result);
+            Assert.IsTrue(result); // all below are same
+            Assert.That(result, Is.True);
+            Assert.That(result == true);
         }
-        [TestMethod]
+        [Test]
         public void CanBeCancelledBy_SameUserCancelling_ReturnsTrue() // convention methodname_scenariobeingtested_expectedoutcome
         {
             // Arrange
@@ -30,7 +32,7 @@ namespace TestNinja.UnitTests
             Assert.IsTrue(result);
         }
 
-        [TestMethod]
+        [Test]
         public void CanBeCancelledBy_AnotherUserCancelling_ReturnsFalse() // convention methodname_scenariobeingtested_expectedoutcome
         {
             // Arrange
@@ -44,5 +46,13 @@ namespace TestNinja.UnitTests
     }
 }
 
-
 // to run the test click on test in VS top menu and then click on run and then "all tests"
+// Type of tests
+// MSTest
+// NUnit
+// XUnit
+// till now we did MSTest and now we will do NUnit.
+// install-package NUnit -Version 3.8.1
+// make sure the project selected in package manger console is pointed to UNit test project and not the original one.
+// to run Nunit inside VS we need to install another package
+// Install-Package NUnit3TestAdapter -Version 3.8.0
