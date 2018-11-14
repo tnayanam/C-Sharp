@@ -29,24 +29,25 @@ namespace TestNinja.UnitTests
         [Test]
         public void Max_FirstArgumentGreater_ReturnFirstArguments()
         {
-            var result = _math.Max(2,1);
+            var result = _math.Max(2,1); // same code
             Assert.That(result, Is.EqualTo(2));
         }
 
         [Test]
         public void Max_SecondArgumentGreater_ReturnSecondArguments()
         {
-            var result = _math.Max(1, 2);
+            var result = _math.Max(1, 2); // same code
             Assert.That(result, Is.EqualTo(2));
         }
 
         [Test]
         public void Max_ArgumentsEqual_ReturnSameArguments()
         {
-            var result = _math.Max(1, 1);
+            var result = _math.Max(1, 1); // same code
             Assert.That(result, Is.EqualTo(1));
         }
     }
 }
 
 // problem with above approach is that we have math class instantiated too man y times in each of the mehtods. so we need to fix it.
+// Problem is all the code above looks same so we need to use just one function and be able to do all threee max function output.
