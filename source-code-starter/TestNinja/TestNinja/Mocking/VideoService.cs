@@ -63,3 +63,7 @@ namespace TestNinja.Mocking
         public DbSet<Video> Videos { get; set; }
     }
 }
+
+/*
+ * Some of the depdendency injection frameworks are Niject, StructureMap, Spring.Net, Autofac, Unity
+ */
