@@ -9,10 +9,17 @@ namespace TestNinja.Mocking
 {
     public class VideoService
     {
-        public string ReadVideoTitle(IFileReader fileReader)
+        public IFileReader FileReader { get; set; }
+
+        public VideoService()
+        {
+                FileReader = new FileReader();
+        }
+        // in previous lecture we learned injecting dependency via method parameter.
+        public string ReadVideoTitle()
         {
             // var str = File.ReadAllText("video.txt"); // this is the place where we are dealing with an external class/source which is "video.txt"
-            var str = fileReader.Read("video.txt"); // this is still tightly coupled with the FileReader class because we are "newing" that class
+            var str = FileReader.Read("video.txt"); // this is still tightly coupled with the FileReader class because we are "newing" that class
             // str will be empty string when called usinf FakeFileReader becuse Read will return "" and thus videeo will be null as it cannot be serlilized.
                 // so this was method1 to inject dependency
             var video = JsonConvert.DeserializeObject<Video>(str);

@@ -16,7 +16,8 @@ namespace TestNinja.UnitTests.Mocking
         public void ReadVideoTitle_EmptyFile_RetirnError()
         {
             var svc = new VideoService();
-            var result = svc.ReadVideoTitle(new FakeFileReader()); // this is how we are injecting the dependencies.
+            svc.FileReader = new FakeFileReader(); // now here the magic happened
+            var result = svc.ReadVideoTitle(); // this is how we are injecting the dependencies.
 
             Assert.That(result, Does.Contain("error").IgnoreCase);
         }
