@@ -21,7 +21,6 @@ namespace TestNinja.UnitTests.Mocking
             service.PlaceOrder(order);
 
             storage.Verify(s=>s.Store(order)); // this checks it.
-
         }
     }
 }
@@ -37,5 +36,5 @@ namespace TestNinja.UnitTests.Mocking
 
             return orderId; 
         }
- *
+ * USE MOCKS ONLY WHEN REMOVING EXTENRNAL DEPENDENCIES FROM UNIT TESTS
  */
