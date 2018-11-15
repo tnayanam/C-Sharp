@@ -11,7 +11,8 @@ namespace TestNinja.Mocking
     {
         public string ReadVideoTitle()
         {
-            var str = File.ReadAllText("video.txt");
+           // var str = File.ReadAllText("video.txt"); // this is the place where we are dealing with an external class/source which is "video.txt"
+            var str = new FileReader().Read("video.txt");
             var video = JsonConvert.DeserializeObject<Video>(str);
             if (video == null)
                 return "Error parsing the video.";
