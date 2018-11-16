@@ -7,7 +7,11 @@ using TestNinja.Mocking;
 
 namespace TestNinja.UnitTests.Mocking
 {
-    public class VideoRepository
+    public interface IVideoRepository
+    {
+        IEnumerable<Video> GetUnprocessedVideos();
+    }
+    public class VideoRepository:IVideoRepository
     {
         public IEnumerable<Video> GetUnprocessedVideos()
         {
