@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using Newtonsoft.Json;
+using TestNinja.UnitTests.Mocking;
 
 namespace TestNinja.Mocking
 {
@@ -36,18 +37,12 @@ namespace TestNinja.Mocking
         {
             var videoIds = new List<int>();
 
-            using (var context = new VideoContext())
-            {
-                var videos =
-                    (from video in context.Videos
-                     where !video.IsProcessed
-                     select video).ToList();
+            var videos = new VideoRepository().GetUnprocessedVideos();
 
                 foreach (var v in videos)
                     videoIds.Add(v.Id);
 
                 return String.Join(",", videoIds);
-            }
         }
     }
 
