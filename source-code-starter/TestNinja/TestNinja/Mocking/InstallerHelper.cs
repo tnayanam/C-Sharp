@@ -8,9 +8,9 @@ namespace TestNinja.Mocking
         private string _setupDestinationFile;
         private IFileDownloader _fileDownloader;
 
-        public InstallerHelper(IFileDownloader _fileDownloader)
+        public InstallerHelper(IFileDownloader fileDownloader)
         {
-            _fileDownloader = _fileDownloader ?? new FileDownloader();
+            _fileDownloader = fileDownloader;
         }
 
         public bool DownloadInstaller(string customerName, string installerName)
