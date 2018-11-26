@@ -3,24 +3,24 @@ using System.IO;
 using System.Net;
 using System.Net.Mail;
 using System.Text;
-
+ // Lets determine where are the outside references because we need those to be extracted in a separate file
 namespace TestNinja.Mocking
 {
     public class HouseKeeperService
     {
-        //private readonly IUnitOfWork _unitOfWork;
+        private readonly IUnitOfWork _unitOfWork;
         //private readonly IStatementGenerator _statementGenerator;
         //private readonly IEmailSender _emailSender;
         private readonly IXtraMessageBox _messageBox;
-        private static readonly UnitOfWork UnitOfWork = new UnitOfWork();
+
 
         public HouseKeeperService(
-            //IUnitOfWork unitOfWork,
+            IUnitOfWork unitOfWork,
             //IStatementGenerator statementGenerator,
             //IEmailSender emailSender,
             IXtraMessageBox messageBox)
         {
-            //_unitOfWork = unitOfWork;
+            _unitOfWork = unitOfWork;
             //_statementGenerator = statementGenerator;
             //_emailSender = emailSender;
             _messageBox = messageBox;
@@ -28,14 +28,14 @@ namespace TestNinja.Mocking
 
         public void SendStatementEmails(DateTime statementDate)
         {
-            var housekeepers = UnitOfWork.Query<Housekeeper>();
+            var housekeepers = UnitOfWork.Query<Housekeeper>(); // 1. here we have the external resource use
 
             foreach (var housekeeper in housekeepers)
             {
                 if (String.IsNullOrWhiteSpace(housekeeper.Email))
                     continue;
 
-                var statementFilename = SaveStatement(housekeeper.Oid, housekeeper.FullName, statementDate);
+                var statementFilename = SaveStatement(housekeeper.Oid, housekeeper.FullName, statementDate); // 2. Here we have the external resource
 
                 if (string.IsNullOrWhiteSpace(statementFilename))
                     continue;
@@ -46,7 +46,7 @@ namespace TestNinja.Mocking
                 try
                 {
                     EmailFile(emailAddress, emailBody, statementFilename,
-                        string.Format("Sandpiper Statement {0:yyyy-MM} {1}", statementDate, housekeeper.FullName));
+                        string.Format("Sandpiper Statement {0:yyyy-MM} {1}", statementDate, housekeeper.FullName)); // 3. Here we have the external resource
                 }
                 catch (Exception e)
                 {
