@@ -23,19 +23,29 @@ namespace TestNinja.UnitTests.Mocking
                 {
                     Id =2,
                     Reference = "a",
-                    ArrivalDate = new DateTime(2017,1,15, 14,0,0),
-                    DepartureDate = new DateTime(2017,1,20,10,0,0),
+                    ArrivalDate = ArriveOn(2017,1,15),
+                    DepartureDate = DepartOn(2017,1,20),
                 }
             }.AsQueryable());
 
             var result = BookingHelper.OverlappingBookingsExist(new Booking()
             {
                 Id = 1,
-                ArrivalDate = new DateTime(2017, 1, 10, 14, 0, 0),
-                DepartureDate = new DateTime(2017, 1, 14, 10, 0, 0)
+                ArrivalDate = ArriveOn(2017,1,10),
+                DepartureDate = DepartOn(2017,1,14),
             }, repository.Object);
 
             Assert.That(result,Is.Empty);
+        }
+
+        private DateTime ArriveOn(int year, int month, int day)
+        {
+            return new DateTime(year, month, day, 14,0,0);
+        }
+
+        private DateTime DepartOn(int year, int month, int day)
+        {
+            return new DateTime(year, month, day, 10, 0, 0);
         }
     }
 }
