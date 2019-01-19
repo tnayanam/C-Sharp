@@ -196,6 +196,9 @@ static async void OrderAsync()
 
 
 
+How to know the version of NugetPackage?
+Go to csproj file.
+
 
 
 
