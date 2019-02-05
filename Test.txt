@@ -195,6 +195,16 @@ static async void OrderAsync()
 }
 
 
+EF Core command:
+
+-- Add-Migration <migration-name> -> Adds the migration
+-- Update-Database -> Updates the database
+-- Remove-Migration : Remove Migration -> Removed the pending migration which have not been applied to the database yet.
+-- Update-Database <specific-migration> -> Reverts to specific migration; But what if you have already applied one or more migrations to the database? What then? Fortunately, you can revert a database to a specific migration.
+-- Script-Migration -> Generates the scripts.
+-- Script-Migration -Output "myMigrations.sql"  -> in this case output comes in a file.
+-- Update-Database -Migration 0 -> Revert all the migrations.
+
 
 
 
