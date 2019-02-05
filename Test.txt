@@ -206,6 +206,9 @@ EF Core command:
 -- Update-Database -Migration 0 -> Revert all the migrations.
 
 
+How to know the version of NugetPackage?
+Go to csproj file.
+
 
 
 
