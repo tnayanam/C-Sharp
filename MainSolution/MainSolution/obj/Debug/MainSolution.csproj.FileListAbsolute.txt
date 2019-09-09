@@ -16,3 +16,10 @@ C:\Users\lenovo\Desktop\demo\CS\C-Sharp\MainSolution\MainSolution\bin\Debug\Main
 C:\Users\lenovo\Desktop\demo\CS\C-Sharp\MainSolution\MainSolution\obj\Debug\MainSolution.csprojResolveAssemblyReference.cache
 C:\Users\lenovo\Desktop\demo\CS\C-Sharp\MainSolution\MainSolution\obj\Debug\MainSolution.exe
 C:\Users\lenovo\Desktop\demo\CS\C-Sharp\MainSolution\MainSolution\obj\Debug\MainSolution.pdb
+C:\Users\tnayanam\Desktop\Learn\C-Sharp\MainSolution\MainSolution\bin\Debug\MainSolution.exe.config
+C:\Users\tnayanam\Desktop\Learn\C-Sharp\MainSolution\MainSolution\bin\Debug\MainSolution.exe
+C:\Users\tnayanam\Desktop\Learn\C-Sharp\MainSolution\MainSolution\bin\Debug\MainSolution.pdb
+C:\Users\tnayanam\Desktop\Learn\C-Sharp\MainSolution\MainSolution\obj\Debug\MainSolution.csprojAssemblyReference.cache
+C:\Users\tnayanam\Desktop\Learn\C-Sharp\MainSolution\MainSolution\obj\Debug\MainSolution.csproj.CoreCompileInputs.cache
+C:\Users\tnayanam\Desktop\Learn\C-Sharp\MainSolution\MainSolution\obj\Debug\MainSolution.exe
+C:\Users\tnayanam\Desktop\Learn\C-Sharp\MainSolution\MainSolution\obj\Debug\MainSolution.pdb
